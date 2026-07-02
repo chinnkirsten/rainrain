@@ -13,9 +13,17 @@ type: software
 authors:
   - family-names: Chin
     given-names: Kirsten
-version: "0.1.0"
+version: "0.1.1"
 date-released: "2026-07-03"
 license: BUSL-1.1
+doi: 10.5281/zenodo.21157229
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21157229"
+    description: "Concept DOI — always resolves to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.21157230"
+    description: "DOI for version 0.1.1"
 repository-code: "https://github.com/chinnkirsten/rainrain"
 url: "https://rainrain-ten.vercel.app"
 keywords:
