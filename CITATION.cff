@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use Rainrain in your research, please cite it as below."
+title: "Rainrain (社科茅草屋 Rainrain): a local-first research library and lightweight qualitative-coding tool for social scientists"
+abstract: >-
+  Rainrain is a privacy-first, local-first desktop application that helps
+  social-science researchers collect, full-text search, read, and
+  qualitatively code their primary sources (documents, scanned archives,
+  interview recordings, field notes), manage respondents as a filterable
+  and cross-tabulable dataset, and connect ideas to sources through
+  wiki-style linked notes — entirely on the researcher's own computer,
+  with no cloud upload.
+type: software
+authors:
+  - family-names: Chin
+    given-names: Kirsten
+version: "0.1.0"
+date-released: "2026-07-03"
+license: BUSL-1.1
+repository-code: "https://github.com/chinnkirsten/rainrain"
+url: "https://rainrain-ten.vercel.app"
+keywords:
+  - qualitative research
+  - qualitative data analysis
+  - CAQDAS
+  - social science
+  - local-first
+  - privacy
+  - fieldwork
+  - qualitative coding
+  - thematic analysis
+  - research data management

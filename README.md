@@ -1,5 +1,7 @@
 # Rainrain · 社科学生的本地研究图书馆
 
+[![License: BUSL-1.1](https://img.shields.io/badge/License-BUSL--1.1-blue.svg)](LICENSE) [![Cite this repository](https://img.shields.io/badge/cite-CITATION.cff-brightgreen.svg)](CITATION.cff) ![Platform: Windows | macOS](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey)
+
 把文献、史料、田野、笔记，收进一个私密、可检索、能编码的本地图书馆。
 
 Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的研究资料工具——把你做研究要用的一切（论文、史料扫描、访谈录音、田野笔记、引文证据）集中管理，可全文检索、可摘录编码，**全程在你自己电脑上、资料绝不上云**。免费、无订阅、无条数限制。
@@ -82,3 +84,45 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
 ## 隐私
 
 所有研究资料只存在你本机，永不上传任何云；可选的 AI 摘要也在本机运行。对要过伦理审查、处理敏感访谈的社科研究，尤其重要。
+
+## 许可证 / License
+
+Rainrain 采用 **Business Source License 1.1（BSL 1.1）**——源码公开可读，但不是「随便拿去用」的那种开源：
+
+- **个人、学术研究、教学、非营利与教育机构**使用**完全免费**（包括用在你真实的研究和论文里）。
+- **商业 / 营利性使用**需要向作者取得商业授权。
+- 每个版本在其 **Change Date（2030-07-03）**后自动转为 **Apache License 2.0**（彻底开源）。
+
+完整条款见 [LICENSE](LICENSE)。想要商业授权，请邮件联系作者 Kirsten Chin <Kirstenchin1@outlook.com>，或在本仓库开一条 [issue](https://github.com/chinnkirsten/rainrain/issues)。
+
+> 一句话：穷学生和研究者随便用、拿去写论文没问题；公司要用请付费；四年后彻底开源。
+
+## 引用 Rainrain / Citation
+
+如果 Rainrain 帮到了你的研究，请在论文或报告里引用它——这对一个独立的学术工具能不能活下去，很重要。
+
+GitHub 仓库页右侧的 **“Cite this repository”** 按钮会根据 [CITATION.cff](CITATION.cff) 自动生成 APA、BibTeX 等格式。手动引用可用：
+
+> Kirsten Chin. (2026). *Rainrain (社科茅草屋 Rainrain): a local-first research library and lightweight qualitative-coding tool for social scientists* (Version 0.1.0) [Computer software]. https://github.com/chinnkirsten/rainrain
+
+BibTeX：
+
+```bibtex
+@software{chin_rainrain_2026,
+  author  = {Chin, Kirsten},
+  title   = {{Rainrain (社科茅草屋 Rainrain): a local-first research library and lightweight qualitative-coding tool for social scientists}},
+  year    = {2026},
+  version = {0.1.0},
+  url     = {https://github.com/chinnkirsten/rainrain}
+}
+```
+
+（后续会为每个发布版本申请 Zenodo DOI，届时这里会给出带 DOI 的稳定引用。）
+
+## 参与贡献 / Contributing
+
+欢迎报 bug、提功能建议、帮忙翻译或改进文档。请先读 [CONTRIBUTING.md](CONTRIBUTING.md)——尤其注意「绝不提交真实研究数据」这条红线。
+
+## 作者 / Author
+
+Kirsten Chin ·「社科茅草屋」系列
