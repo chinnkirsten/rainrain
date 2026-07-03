@@ -63,10 +63,12 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
 
 首次打开系统会拦一下（应用未做代码签名，属正常）。
 
-| 平台 | 文件 | 说明 |
-|------|------|------|
-| Windows | `Rainrain-Setup-0.1.0.exe` (189MB) | 双击安装；弹「已保护你的电脑」→ 更多信息 → 仍要运行 |
-| Mac（仅 Apple 芯片） | `Rainrain-0.1.0-arm64.dmg` (739MB) | 拖进「应用程序」；若提示「已损坏」→ 右键打开，或终端跑 `xattr -dr com.apple.quarantine /Applications/Rainrain.app` |
+中文、英文界面都有——不习惯全英文的同学选「中文版」。
+
+| 平台 | 英文版 | 中文版 | 安装说明 |
+|------|------|------|------|
+| Windows | `Rainrain-Setup-0.1.0.exe` (189MB) | `Rainrain-中文版-Setup-0.1.0.exe` (189MB) | 双击安装；弹「已保护你的电脑」→ 更多信息 → 仍要运行 |
+| Mac（仅 Apple 芯片） | `Rainrain-0.1.0-arm64.dmg` (231MB) | `Rainrain-中文版-0.1.0-arm64.dmg` (231MB) | 拖进「应用程序」；若提示「已损坏」→ 右键打开，或终端跑 `xattr -dr com.apple.quarantine /Applications/Rainrain.app` |
 
 到 [Releases](../../releases) 下载。装完默认密码 `rainrain`，进设置改成自己的。
 
