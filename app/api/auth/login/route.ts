@@ -6,9 +6,11 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   let password = "";
+  let remember = false;
   try {
     const body = await req.json();
     password = typeof body?.password === "string" ? body.password : "";
+    remember = body?.remember === true;
   } catch {
     return NextResponse.json({ error: "Bad request." }, { status: 400 });
   }
@@ -24,7 +26,9 @@ export async function POST(req: Request) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: SESSION_MAX_AGE,
+    // remember === true -> persistent 30-day cookie; otherwise a session
+    // cookie that the browser drops on close (no maxAge/expires set).
+    ...(remember ? { maxAge: SESSION_MAX_AGE } : {}),
   });
   return res;
 }

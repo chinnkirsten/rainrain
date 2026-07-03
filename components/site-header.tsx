@@ -40,7 +40,11 @@ export function SiteHeader() {
   function toggleTheme() {
     const next = !dark;
     setDark(next);
-    document.documentElement.dataset.theme = next ? "dark" : "light";
+    // 0.4s 颜色过渡：只在切换瞬间挂上，避免常驻 transition 拖慢 hover
+    const el = document.documentElement;
+    el.classList.add("theme-anim");
+    el.dataset.theme = next ? "dark" : "light";
+    setTimeout(() => el.classList.remove("theme-anim"), 450);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {}

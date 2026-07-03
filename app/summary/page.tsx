@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { DownloadIcon } from "@/components/icons";
+import { BrushRule } from "@/components/ink-bits";
 import profileData from "@/data/profile.json";
 import { t, dateLocale } from "@/lib/i18n";
 
@@ -125,6 +126,7 @@ export default function SummaryPage() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-8 pb-20">
         <div className="no-print mb-6">
           <h1 className="font-serif text-3xl text-ink">{t.sum_title}</h1>
+          <BrushRule className="mt-1.5" />
           <p className="mt-1 max-w-2xl text-sm text-muted">{t.sum_desc}</p>
         </div>
 

@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookIcon } from "@/components/icons";
 import { InkPainting } from "@/components/ink-painting";
+import { InkCat } from "@/components/ink-cat";
 import { t } from "@/lib/i18n";
 
 export default function LoginPage() {
   const router = useRouter();
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [shake, setShake] = useState(0);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function LoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, remember }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? t.err_login);
@@ -30,36 +32,43 @@ export default function LoginPage() {
     } catch (e) {
       setError((e as Error).message);
       setBusy(false);
+      // 错误反馈：卡片轻抖三下，枝头的猫甩一下尾巴
+      setShake((v) => v + 1);
+      setTimeout(() => setShake(0), 600);
+      window.dispatchEvent(new CustomEvent("rr-cat-flick"));
     }
   }
 
   return (
-    <main className="paper-grain relative flex min-h-screen items-center justify-center overflow-hidden px-5">
-      {/* 整幅水墨樱梅，铺满入口 */}
+    <main className="paper-grain relative flex min-h-screen justify-center overflow-hidden px-5">
+      {/* 整幅水墨樱梅铺满入口；小黑猫同坐标系叠在枝头 */}
       <InkPainting variant="entrance" className="pointer-events-none absolute inset-0 h-full w-full select-none" />
+      <InkCat />
 
-      {/* 竖排题字 */}
+      {/* 大字水印：淡墨「花」 */}
+      <span aria-hidden className="rr-wm font-serif absolute left-[6%] top-1/2 hidden -translate-y-1/2 text-[240px] lg:block">
+        花
+      </span>
+
+      {/* 竖排题字（书脊式 RainRain） */}
       <div
         aria-hidden
-        className="rr-vertical pointer-events-none absolute left-7 top-1/2 hidden -translate-y-1/2 select-none items-center gap-4 font-serif text-[15px] tracking-[0.55em] text-ink-soft/75 md:flex"
+        className="rr-vertical pointer-events-none absolute left-7 top-1/2 hidden -translate-y-1/2 select-none items-center gap-4 font-serif text-[15px] italic tracking-[0.35em] text-ink-soft/80 sm:flex"
       >
-        <span>格物致知</span>
+        <span>RainRain</span>
         <span className="mt-1 inline-block h-2 w-2 rounded-[2px] bg-accent/80" />
       </div>
 
-      <div className="relative w-full max-w-sm">
+      <div className="relative mt-[clamp(150px,24vh,300px)] w-full max-w-sm pb-16">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-paper shadow-[0_10px_24px_-10px_rgba(124,45,45,0.55)]">
-            <BookIcon className="h-[22px] w-[22px]" />
-          </span>
-          <h1 className="font-serif text-4xl text-ink">{t.brand}</h1>
+          <h1 className="font-serif text-4xl leading-tight text-ink">{t.brand}</h1>
           <p className="font-serif text-[15px] italic leading-relaxed text-ink-soft">{t.login_poem}</p>
           <p className="text-xs text-muted">{t.login_subtitle}</p>
         </div>
 
         <form
           onSubmit={submit}
-          className="flex flex-col gap-3 rounded-2xl border border-line bg-card/85 p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)] backdrop-blur-md"
+          className={`flex flex-col gap-3 rounded-2xl border border-line bg-card/85 p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)] backdrop-blur-md ${shake ? "rr-shake" : ""}`}
         >
           <label className="flex flex-col gap-1.5 text-sm">
             <span className="text-muted">{t.login_password}</span>
@@ -71,6 +80,15 @@ export default function LoginPage() {
               className="rounded-lg border border-line-strong bg-paper/80 px-3 py-2.5 text-ink outline-none focus:border-accent"
               placeholder="••••••••"
             />
+          </label>
+          <label className="flex cursor-pointer items-center gap-2 text-xs text-muted">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+              className="h-3.5 w-3.5 cursor-pointer accent-[var(--accent)]"
+            />
+            {t.login_remember}
           </label>
           {error && <p className="text-sm text-accent">{error}</p>}
           <button

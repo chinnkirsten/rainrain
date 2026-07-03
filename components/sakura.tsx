@@ -105,14 +105,14 @@ export function Sakura() {
         p.y += p.vy * dt;
         p.rot += p.vr * dt;
 
-        let alpha = baseAlpha * Math.min(1, age / 0.35);
+        let alpha = baseAlpha * Math.min(1, age / 0.6);
         if (p.life > 0) {
           const remain = p.life - age;
           if (remain <= 0) {
             petals.splice(i, 1);
             continue;
           }
-          alpha *= Math.min(1, remain / 0.7);
+          alpha *= Math.min(1, remain / 1.2);
         }
         alpha *= Math.max(0, Math.min(1, (h + 24 - p.y) / 110)); // 近底渐隐
         if (p.y > h + 30 || p.x < -80 || p.x > w + 80) {
@@ -136,10 +136,26 @@ export function Sakura() {
 
     const pick = () => palette[(Math.random() * palette.length) | 0];
 
+    // 氛围偏好：密度 off/low/std + 入场开关（设置页实时下发 rr-prefs 事件）
+    let density: "off" | "low" | "std" = "std";
+    let entranceOn = true;
+    const readPrefs = () => {
+      try {
+        const p = JSON.parse(localStorage.getItem("rr-prefs") || "{}");
+        density = p.petals === "off" || p.petals === "low" ? p.petals : "std";
+        entranceOn = p.entrance !== false;
+      } catch {}
+    };
+    readPrefs();
+    const onPrefs = () => readPrefs();
+    window.addEventListener("rr-prefs", onPrefs);
+
     // 入场：一阵花瓣在 ~3s 内错峰入画，飘满一屏后自然散尽
     const entrance = () => {
+      if (density === "off" || !entranceOn) return;
       const now = performance.now() / 1000;
-      const n = Math.round(Math.min(38, Math.max(18, w / 46)));
+      const base = Math.round(Math.min(38, Math.max(18, w / 46)));
+      const n = density === "low" ? Math.round(base * 0.45) : base;
       for (let i = 0; i < n; i++) {
         petals.push({
           x: rnd(-0.02, 1.04) * w,
@@ -163,29 +179,30 @@ export function Sakura() {
       ensure();
     };
 
-    // 点击：从点击处散出几瓣，向外一撩再飘落
+    // 点击：像被碰落的花——在点击处上方轻轻浮现几瓣，无初速，慢慢坠落、大幅摇曳
     const burst = (x: number, y: number) => {
+      if (density === "off") return;
       if (petals.length > 90) return;
       const now = performance.now() / 1000;
-      const n = 5 + ((Math.random() * 3) | 0);
+      const n = (density === "low" ? 3 : 5) + ((Math.random() * 3) | 0);
       for (let i = 0; i < n; i++) {
         petals.push({
-          x: x + rnd(-6, 6),
-          y: y + rnd(-6, 4),
-          vx: rnd(-85, 85),
-          vy: rnd(-48, 6),
-          term: rnd(56, 96),
-          drag: 1.6,
-          size: rnd(4, 8),
+          x: x + rnd(-16, 16),
+          y: y - rnd(16, 42),
+          vx: rnd(-6, 6),
+          vy: rnd(4, 10),
+          term: rnd(18, 32),
+          drag: 0.4,
+          size: rnd(5, 9),
           rot: rnd(0, Math.PI * 2),
-          vr: rnd(-2.4, 2.4),
-          swayAmp: rnd(6, 16),
-          swayFreq: rnd(0.8, 1.8),
+          vr: rnd(-0.9, 0.9),
+          swayAmp: rnd(16, 34),
+          swayFreq: rnd(0.4, 0.9),
           phase: rnd(0, Math.PI * 2),
-          flutterFreq: rnd(1.2, 2.6),
+          flutterFreq: rnd(0.6, 1.4),
           color: pick(),
-          born: now,
-          life: rnd(1.5, 2.3),
+          born: now + i * 0.09,
+          life: rnd(4, 6),
         });
       }
       ensure();
@@ -199,6 +216,7 @@ export function Sakura() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("click", onClick, true);
+      window.removeEventListener("rr-prefs", onPrefs);
       mo.disconnect();
     };
   }, []);

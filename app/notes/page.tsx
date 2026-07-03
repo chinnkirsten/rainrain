@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
+import { BrushRule, InkEmpty, InkLoading } from "@/components/ink-bits";
 import { t } from "@/lib/i18n";
 
 type Note = { id: string; title: string; body: string; createdAt: string; updatedAt: string };
@@ -242,6 +243,7 @@ export default function NotesPage() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-8 pb-20">
         <header className="mb-5">
           <h1 className="font-serif text-3xl text-ink">{t.notes_title}</h1>
+          <BrushRule className="mt-1.5" />
           <p className="mt-1 max-w-2xl text-sm text-muted">{t.notes_desc}</p>
         </header>
 
@@ -267,9 +269,9 @@ export default function NotesPage() {
                 placeholder={t.notes_search}
                 className="w-full rounded-full border border-line-strong bg-card px-4 py-2 text-sm text-ink outline-none focus:border-accent"
               />
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 rr-stagger">
                 {loading ? (
-                  <p className="px-1 py-2 text-sm text-muted">{t.loading}</p>
+                  <InkLoading />
                 ) : filteredNotes.length === 0 ? (
                   <p className="px-1 py-2 text-sm text-muted">{t.notes_empty}</p>
                 ) : (
@@ -315,7 +317,7 @@ export default function NotesPage() {
           <section className="flex-1">
             {!activeNote ? (
               <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong p-10 text-center text-muted">
-                {t.notes_empty}
+                <InkEmpty hint={t.notes_empty} />
               </div>
             ) : (
               <div className="flex flex-col gap-4">

@@ -2,8 +2,10 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/site-header";
+import { BrushRule } from "@/components/ink-bits";
 import { t } from "@/lib/i18n";
 import type { AnonPair } from "@/lib/anon-util";
+import { DEFAULT_PREFS, getPrefs, savePrefs, type Prefs } from "@/lib/prefs";
 
 const inputCls =
   "rounded-lg border border-line-strong bg-paper px-3 py-2 text-sm text-ink outline-none focus:border-accent";
@@ -23,6 +25,11 @@ export default function SettingsPage() {
   const [pairs, setPairs] = useState<AnonPair[]>([]);
   const [anonMsg, setAnonMsg] = useState("");
   const [anonBusy, setAnonBusy] = useState(false);
+
+  // 氛围偏好（localStorage，本机生效）
+  const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
+  useEffect(() => setPrefs(getPrefs()), []);
+  const patchPrefs = (p: Partial<Prefs>) => setPrefs(savePrefs(p));
 
   useEffect(() => {
     fetch("/api/anon")
@@ -103,8 +110,56 @@ export default function SettingsPage() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-2xl flex-1 px-5 py-8 pb-20">
         <h1 className="font-serif text-3xl text-ink">{t.set_title}</h1>
+        <BrushRule className="mt-1.5" />
 
+        {/* 氛围：花瓣 / 小猫 / 入场 / 禅音 / 字号（本机偏好，即时生效） */}
         <section className="mt-6 rounded-[var(--radius-card)] border border-line bg-card p-5">
+          <h2 className="font-serif text-lg text-ink">{t.set_atmo}</h2>
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">{t.set_atmo_desc}</p>
+          <div className="mt-4 flex flex-col gap-3 text-sm">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="w-32 text-muted">{t.set_atmo_petals}</span>
+              {([["off", t.set_atmo_petals_off], ["low", t.set_atmo_petals_low], ["std", t.set_atmo_petals_std]] as const).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => patchPrefs({ petals: v })}
+                  className={`rounded-full px-3 py-1 text-xs transition-colors ${
+                    prefs.petals === v ? "bg-accent text-white" : "bg-paper-2 text-ink-soft hover:bg-line"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            {([["cat", t.set_atmo_cat], ["entrance", t.set_atmo_entrance], ["sound", t.set_atmo_sound]] as const).map(([k, label]) => (
+              <label key={k} className="flex cursor-pointer items-center gap-3">
+                <span className="w-32 text-muted">{label}</span>
+                <input
+                  type="checkbox"
+                  checked={prefs[k] as boolean}
+                  onChange={(e) => patchPrefs({ [k]: e.target.checked } as Partial<Prefs>)}
+                  className="h-4 w-4 cursor-pointer accent-[var(--accent)]"
+                />
+              </label>
+            ))}
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="w-32 text-muted">{t.set_fontSize}</span>
+              {([15, 16, 17] as const).map((v) => (
+                <button
+                  key={v}
+                  onClick={() => patchPrefs({ fontSize: v })}
+                  className={`rounded-full px-3 py-1 text-xs tabular-nums transition-colors ${
+                    prefs.fontSize === v ? "bg-accent text-white" : "bg-paper-2 text-ink-soft hover:bg-line"
+                  }`}
+                >
+                  {v}px
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-4 rounded-[var(--radius-card)] border border-line bg-card p-5">
           <h2 className="font-serif text-lg text-ink">{t.set_security}</h2>
           <p className="mt-1 text-sm text-muted">{t.set_security_desc}</p>
           <form onSubmit={change} className="mt-4 flex max-w-sm flex-col gap-3">

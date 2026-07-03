@@ -5,7 +5,7 @@ export const LANG = (process.env.NEXT_PUBLIC_LANG === "zh" ? "zh" : "en") as Lan
 
 // 每条 [中文, 英文]
 const S = {
-  brand: ["社科茅草屋 Rainrain", "社科茅草屋 Rainrain"],
+  brand: ["社科茅草屋 RainRain", "社科茅草屋 RainRain"],
   nav_home: ["首页", "Home"],
   nav_all: ["全部馆藏", "All Collections"],
   nav_summary: ["导出摘要", "Summary"],
@@ -212,6 +212,23 @@ const S = {
     "花瓣会落，研究常开。",
     "Petals fall — the research keeps blooming.",
   ],
+  login_remember: ["记住我（本机 30 天）", "Remember me on this device (30 days)"],
+  empty_poem: ["此处尚无花开。", "Nothing has bloomed here yet."],
+
+  // 设置 · 氛围
+  set_atmo: ["氛围", "Atmosphere"],
+  set_atmo_desc: [
+    "花瓣、小猫与入场动画。答辩或投屏时可一键收敛。",
+    "Petals, the cat, and entrance animations. Tone it down for defenses and demos.",
+  ],
+  set_atmo_petals: ["花瓣", "Petals"],
+  set_atmo_petals_off: ["关", "Off"],
+  set_atmo_petals_low: ["少量", "Fewer"],
+  set_atmo_petals_std: ["标准", "Standard"],
+  set_atmo_cat: ["枝头小猫", "Cat on the branch"],
+  set_atmo_entrance: ["入场动画", "Entrance animation"],
+  set_atmo_sound: ["禅音（风铃，极轻）", "Zen chime (very quiet)"],
+  set_fontSize: ["界面字号", "Interface text size"],
   home_poem: [
     "风翻一页，又一页田野。",
     "The wind turns the page, one field note at a time.",

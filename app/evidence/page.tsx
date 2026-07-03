@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { Highlight } from "@/components/highlight";
 import { useStructure } from "@/components/structure-provider";
+import { BrushRule, InkEmpty, InkLoading } from "@/components/ink-bits";
 import { KIND_LABEL } from "@/lib/ui";
 import { t, LANG } from "@/lib/i18n";
 import type { Excerpt } from "@/lib/types";
@@ -132,6 +133,7 @@ export default function EvidencePage() {
         <header className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-serif text-3xl text-ink">{t.ev_title}</h1>
+            <BrushRule className="mt-1.5" />
             <p className="mt-1 text-sm text-muted">{t.ev_desc}</p>
           </div>
           {filtered.length > 0 && (
@@ -176,7 +178,7 @@ export default function EvidencePage() {
             <p className="mb-3 text-sm text-muted">{t.ev_cb_desc}</p>
             {codebook.length === 0 ? (
               <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-card/60 px-6 py-14 text-center font-serif text-ink-soft">
-                {loading ? t.loading : t.ev_cb_none}
+                {loading ? <InkLoading /> : <InkEmpty hint={t.ev_cb_none} />}
               </div>
             ) : (
               <div className="overflow-hidden rounded-[var(--radius-card)] border border-line">
@@ -218,7 +220,7 @@ export default function EvidencePage() {
             <p className="mb-3 text-sm text-muted">{t.ev_matrix_desc}</p>
             {matrix.cases.length === 0 ? (
               <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-card/60 px-6 py-14 text-center font-serif text-ink-soft">
-                {loading ? t.loading : t.ev_matrix_none}
+                {loading ? <InkLoading /> : <InkEmpty hint={t.ev_matrix_none} />}
               </div>
             ) : (
               <>
@@ -317,11 +319,11 @@ export default function EvidencePage() {
 
         {!loading && filtered.length === 0 ? (
           <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-card/60 px-6 py-16 text-center">
-            <p className="font-serif text-lg text-ink-soft">{t.ev_none}</p>
+            <InkEmpty hint={t.ev_none} />
             <p className="mt-1 text-sm text-muted">{t.ev_emptyHint}</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 rr-stagger">
             {filtered.map((e) => {
               const phase = phaseMap[e.phase];
               return (

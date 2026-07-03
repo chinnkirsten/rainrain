@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
+import { BrushRule, InkEmpty, InkLoading } from "@/components/ink-bits";
 import { t, LANG } from "@/lib/i18n";
 import type { LogEntry, LogKind } from "@/lib/types";
 import { applyAnon } from "@/lib/anon-util";
@@ -102,6 +103,7 @@ export default function LogPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="font-serif text-3xl text-ink">{t.log_title}</h1>
+            <BrushRule className="mt-1.5" />
             <p className="mt-1 max-w-2xl text-sm text-muted">{t.log_desc}</p>
           </div>
           {entries.length > 0 && (
@@ -178,13 +180,13 @@ export default function LogPage() {
         )}
 
         {/* Timeline */}
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="mt-4 flex flex-col gap-3 rr-stagger">
           {loading ? (
-            <p className="text-sm text-muted">{t.loading}</p>
+            <InkLoading />
           ) : shown.length === 0 ? (
-            <p className="rounded-[var(--radius-card)] border border-dashed border-line-strong p-6 text-center text-sm text-muted">
-              {t.log_empty}
-            </p>
+            <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong p-6 text-center text-sm text-muted">
+              <InkEmpty hint={t.log_empty} />
+            </div>
           ) : (
             shown.map((e) => (
               <div

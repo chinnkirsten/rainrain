@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { Highlight } from "@/components/highlight";
+import { BrushRule, InkEmpty } from "@/components/ink-bits";
 import { t, nItems } from "@/lib/i18n";
 import { useStructure } from "@/components/structure-provider";
 import type { Reading, RefType } from "@/lib/types";
@@ -238,6 +239,7 @@ export default function ReadingsPage() {
         <header className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-serif text-3xl text-ink">{t.read_title}</h1>
+            <BrushRule className="mt-1.5" />
             <p className="mt-1 text-sm text-muted">{t.read_desc}</p>
           </div>
           <div className="flex items-center gap-2">
@@ -360,10 +362,10 @@ export default function ReadingsPage() {
 
         {!loading && filtered.length === 0 ? (
           <div className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-card/60 px-6 py-16 text-center font-serif text-ink-soft">
-            {t.read_none}
+            <InkEmpty hint={t.read_none} />
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 rr-stagger">
             {filtered.map((r) => {
               const structured = !!r.title;
               const meta = [r.authors?.join(", "), r.year, r.container].filter(Boolean).join(" · ");

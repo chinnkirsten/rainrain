@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { InkPainting } from "@/components/ink-painting";
+import { HeroParallax } from "@/components/hero-parallax";
 import { ArrowIcon, EditIcon, KindIcon } from "@/components/icons";
 import { topPhasesOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
@@ -24,7 +25,9 @@ export default async function HomePage() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-20">
         {/* Hero */}
         <section className="relative flex flex-col items-start gap-5 py-12 md:py-16">
-          <InkPainting variant="hero" className="pointer-events-none absolute -right-10 -top-12 w-[min(56vw,640px)] select-none max-sm:-top-6 max-sm:w-[78vw] max-sm:opacity-50" />
+          <HeroParallax className="pointer-events-none absolute -right-10 -top-12 w-[min(56vw,640px)] select-none max-sm:-top-6 max-sm:w-[78vw] max-sm:opacity-50">
+            <InkPainting variant="hero" className="h-auto w-full" />
+          </HeroParallax>
           <h1 className="relative max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
             {t.brand}
           </h1>
@@ -62,7 +65,7 @@ export default async function HomePage() {
         <section className="py-4">
           <div className="mb-6 flex items-start justify-between gap-4">
             <div className="flex flex-col gap-1">
-              <h2 className="font-serif text-xl text-ink">{t.home_journey}</h2>
+              <h2 className="rr-sec font-serif text-xl text-ink">{t.home_journey}</h2>
               <p className="max-w-xl text-xs leading-relaxed text-muted">{t.home_journey_hint}</p>
             </div>
             <Link
