@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BookIcon } from "@/components/icons";
+import { InkBranch } from "@/components/ink-branch";
 import { t } from "@/lib/i18n";
 
 export default function LoginPage() {
@@ -33,8 +34,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="paper-grain flex min-h-screen items-center justify-center px-5">
-      <div className="w-full max-w-sm">
+    <main className="paper-grain relative flex min-h-screen items-center justify-center overflow-hidden px-5">
+      <InkBranch className="pointer-events-none absolute -right-10 -top-8 w-[min(78vw,480px)] select-none" />
+      <div className="relative w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-paper">
             <BookIcon className="h-6 w-6" />

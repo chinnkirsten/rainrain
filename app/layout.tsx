@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { LANG, t } from "@/lib/i18n";
 import { StructureProvider } from "@/components/structure-provider";
+import { Sakura } from "@/components/sakura";
 
 const display = Newsreader({
   variable: "--font-display",
@@ -34,6 +35,7 @@ export default function RootLayout({
           {themeScript}
         </Script>
         <StructureProvider>{children}</StructureProvider>
+        <Sakura />
       </body>
     </html>
   );

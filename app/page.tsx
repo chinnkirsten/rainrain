@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
+import { InkBranch } from "@/components/ink-branch";
 import { ArrowIcon, EditIcon, KindIcon } from "@/components/icons";
 import { topPhasesOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
@@ -22,14 +23,15 @@ export default async function HomePage() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-20">
         {/* Hero */}
-        <section className="flex flex-col items-start gap-5 py-12 md:py-16">
-          <h1 className="max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
+        <section className="relative flex flex-col items-start gap-5 py-12 md:py-16">
+          <InkBranch className="pointer-events-none absolute -right-8 -top-10 w-[min(46vw,470px)] select-none opacity-95 max-sm:-top-6 max-sm:w-[64vw] max-sm:opacity-55" />
+          <h1 className="relative max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
             {t.brand}
           </h1>
-          <p className="max-w-2xl text-base leading-relaxed text-ink-soft">
+          <p className="relative max-w-2xl text-base leading-relaxed text-ink-soft">
             {t.home_subtitle}
           </p>
-          <div className="flex flex-wrap gap-3 pt-1">
+          <div className="relative flex flex-wrap gap-3 pt-1">
             <Link
               href="/library"
               className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm text-paper transition-opacity hover:opacity-90"
