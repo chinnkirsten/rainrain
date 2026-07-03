@@ -58,7 +58,12 @@ export type Excerpt = {
   createdAt: string;
 };
 
-/** 已读文献：二手研究论文/著作的书目条目（与一手史料分开）。 */
+/** 文献条目的类型（决定引用样式里的文献标识，如 GB/T 7714 的 [J]/[M]/[D]）。 */
+export type RefType = "article" | "book" | "chapter" | "thesis" | "report" | "web" | "other";
+
+/** 已读文献：二手研究论文/著作的书目条目（与一手史料分开）。
+ *  citation 始终存在（自由题录 / 由结构化字段合成），用于展示与搜索；
+ *  其余结构化字段可选，来自 DOI / BibTeX / RIS 导入或手动录入，用于规范引用与再导出。 */
 export type Reading = {
   id: string;
   citation: string;
@@ -68,6 +73,17 @@ export type Reading = {
   read: boolean;
   phase?: string; // 所属研究子课题（可选）
   createdAt: string;
+  // —— 结构化著录（可选）——
+  type?: RefType;
+  authors?: string[]; // 每个作者一项，形如 "Zhao, Dingxin" 或 "赵鼎新"
+  title?: string;
+  container?: string; // 期刊名 / 书名 / 网站名（article→journal, chapter→book）
+  publisher?: string; // 出版社 / 学位授予单位 / 机构
+  volume?: string;
+  issue?: string;
+  pages?: string;
+  doi?: string;
+  url?: string;
 };
 
 /** 笔记：自由书写 + 用 [[...]] 链接到其它笔记/史料条目/受访者，长出研究知识网。 */

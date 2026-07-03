@@ -426,7 +426,7 @@ export async function addReading(r: Reading): Promise<Reading> {
 
 export async function updateReading(
   id: string,
-  patch: Partial<Pick<Reading, "citation" | "year" | "tags" | "note" | "read" | "phase">>,
+  patch: Partial<Reading>,
 ): Promise<Reading | null> {
   const all = await readReadingsStore();
   const idx = all.findIndex((x) => x.id === id);
