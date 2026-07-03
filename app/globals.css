@@ -20,10 +20,14 @@
 
 :root {
   --accent: var(--color-accent);
-  /* 樱花三阶粉（花瓣画布 + 水墨樱枝共用） */
+  /* 樱花三阶粉（花瓣画布 + 水墨画共用） */
   --sakura-1: #f5cdd7;
   --sakura-2: #efb6c6;
   --sakura-3: #e59cb1;
+  /* 朱红三阶（梅红花团 + 朱印） */
+  --blossom-1: #a2372f;
+  --blossom-2: #c14b40;
+  --blossom-3: #e8988c;
 }
 
 /* 夜间模式：覆盖语义色，整站随之切换 */
@@ -43,6 +47,9 @@
   --sakura-1: #c98d9d;
   --sakura-2: #b97b8d;
   --sakura-3: #a5687b;
+  --blossom-1: #8e4038;
+  --blossom-2: #a85248;
+  --blossom-3: #c47a6e;
 }
 [data-theme="dark"] .paper-grain {
   background-image:
@@ -146,6 +153,21 @@ body {
   }
 }
 
+/* 晕染/碎瓣/印章：缓缓浮现（只定义 from，终点回到元素自身 opacity） */
+.rr-wash {
+  animation: rr-wash-in 1.4s ease backwards;
+}
+@keyframes rr-wash-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 竖排题字 */
+.rr-vertical {
+  writing-mode: vertical-rl;
+}
+
 /* 整枝极缓摇曳（描画完成后才开始） */
 .rr-branch-sway {
   transform-box: fill-box;
@@ -170,7 +192,8 @@ body {
     animation: none;
     opacity: 1;
   }
-  .rr-branch-sway {
+  .rr-branch-sway,
+  .rr-wash {
     animation: none;
   }
 }

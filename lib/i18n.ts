@@ -208,6 +208,14 @@ const S = {
 
   // 登录
   login_subtitle: ["私人研究资料库 · 请登录后访问", "Private research library · please sign in"],
+  login_poem: [
+    "花瓣会落，研究常开。",
+    "Petals fall — the research keeps blooming.",
+  ],
+  home_poem: [
+    "风翻一页，又一页田野。",
+    "The wind turns the page, one field note at a time.",
+  ],
   login_password: ["访问密码", "Access password"],
   login_signingIn: ["验证中…", "Signing in…"],
   login_enter: ["进入图书馆", "Enter library"],

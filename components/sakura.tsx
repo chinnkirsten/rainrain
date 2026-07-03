@@ -55,7 +55,12 @@ export function Sakura() {
     const readPalette = () => {
       const cs = getComputedStyle(document.documentElement);
       const v = (n: string, fb: string) => cs.getPropertyValue(n).trim() || fb;
-      palette = [v("--sakura-1", "#f5cdd7"), v("--sakura-2", "#efb6c6"), v("--sakura-3", "#e59cb1")];
+      palette = [
+        v("--sakura-1", "#f5cdd7"),
+        v("--sakura-2", "#efb6c6"),
+        v("--sakura-3", "#e59cb1"),
+        v("--blossom-3", "#e8988c"), // 偶有一瓣朱红，与画中梅红呼应
+      ];
       baseAlpha = document.documentElement.dataset.theme === "dark" ? 0.75 : 0.9;
     };
     readPalette();
@@ -134,7 +139,7 @@ export function Sakura() {
     // 入场：一阵花瓣在 ~3s 内错峰入画，飘满一屏后自然散尽
     const entrance = () => {
       const now = performance.now() / 1000;
-      const n = Math.round(Math.min(30, Math.max(16, w / 55)));
+      const n = Math.round(Math.min(38, Math.max(18, w / 46)));
       for (let i = 0; i < n; i++) {
         petals.push({
           x: rnd(-0.02, 1.04) * w,
