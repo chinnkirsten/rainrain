@@ -1,0 +1,77 @@
+{
+  "name": "rainrain",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "import": "node scripts/import.mjs",
+    "covers": "node scripts/covers.mjs",
+    "index": "node scripts/index.mjs",
+    "ocr": "node scripts/ocr.mjs",
+    "respondents": "node scripts/respondents.mjs",
+    "backup": "node scripts/backup.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "electron": "electron .",
+    "dist:win": "next build && electron-builder --win",
+    "dist:mac": "next build && electron-builder --mac"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.5.0",
+    "archiver": "^8.0.0",
+    "jose": "^6.2.3",
+    "mammoth": "^1.12.0",
+    "next": "16.2.9",
+    "opencc-js": "^1.3.2",
+    "pdf-to-img": "^6.2.0",
+    "pdfjs-dist": "^6.1.200",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-pdf": "^10.4.1",
+    "sharp": "^0.35.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/archiver": "^8.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "build": {
+    "appId": "com.shekemaocaowu.rainrain",
+    "productName": "Rainrain",
+    "asar": false,
+    "directories": { "output": "dist" },
+    "files": [
+      "electron/**",
+      ".next/**",
+      "public/**",
+      "data/**",
+      "scripts/**",
+      "next.config.*",
+      "package.json",
+      "node_modules/**",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": ["nsis"],
+      "artifactName": "Rainrain-Setup-${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": { "target": ["dir"] }
+  }
+}

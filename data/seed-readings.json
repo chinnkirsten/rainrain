@@ -1,0 +1,60 @@
+[
+  {
+    "id": "seed-rd-1",
+    "citation": "Putnam, R. D. (2000). Bowling Alone: The Collapse and Revival of American Community. Simon & Schuster.",
+    "year": "2000",
+    "tags": ["social capital"],
+    "note": "Core framing for community decline and revival.",
+    "read": true,
+    "phase": "phd",
+    "createdAt": "2025-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-rd-2",
+    "citation": "Oldenburg, R. (1989). The Great Good Place. Marlowe & Company.",
+    "year": "1989",
+    "tags": ["third places"],
+    "note": "Defines the “third place” between home and work.",
+    "read": true,
+    "phase": "undergrad",
+    "createdAt": "2025-01-12T09:00:00.000Z"
+  },
+  {
+    "id": "seed-rd-3",
+    "citation": "Jacobs, J. (1961). The Death and Life of Great American Cities. Random House.",
+    "year": "1961",
+    "tags": ["urban", "public space"],
+    "read": true,
+    "createdAt": "2025-01-15T09:00:00.000Z"
+  },
+  {
+    "id": "seed-rd-4",
+    "citation": "Glover, T. D. (2004). Social Capital in the Lived Experiences of Community Gardeners. Leisure Sciences, 26(2).",
+    "year": "2004",
+    "tags": ["community gardens", "social capital"],
+    "note": "Directly on gardens — read closely for the lit review.",
+    "read": true,
+    "phase": "phd",
+    "createdAt": "2025-02-01T09:00:00.000Z"
+  },
+  {
+    "id": "seed-rd-5",
+    "citation": "Emerson, R., Fretz, R., & Shaw, L. (2011). Writing Ethnographic Fieldnotes (2nd ed.). University of Chicago Press.",
+    "year": "2011",
+    "tags": ["methods"],
+    "note": "Practical guide for the fieldnotes.",
+    "read": true,
+    "phase": "master",
+    "createdAt": "2025-02-05T09:00:00.000Z"
+  },
+  {
+    "id": "seed-rd-6",
+    "citation": "Lin, N. (2001). Social Capital: A Theory of Social Structure and Action. Cambridge University Press.",
+    "year": "2001",
+    "tags": ["social capital", "networks"],
+    "note": "To read — theory chapter.",
+    "read": false,
+    "phase": "phd",
+    "createdAt": "2025-03-01T09:00:00.000Z"
+  }
+]

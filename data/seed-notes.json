@@ -1,0 +1,23 @@
+[
+  {
+    "id": "seed-note-belonging",
+    "title": "Working memo — what builds belonging",
+    "body": "Across the data, belonging seems to grow from small, low-pressure acts rather than from formal membership.\n\nThe clearest moment is in [[Interview P01 — transcript]]: the \"trowel as a welcome\". The same pattern shows up in [[Fieldnotes — Riverside Garden (Visit 1)]], where newcomers hover at the edge until someone hands them a tool. [[Maria (pseudonym)]] is the strongest single case of this.\n\nLinked idea → [[Reciprocity as quiet obligation]].\n\nTODO: contrast community gardens with rented allotments — [[Allotments vs community gardens]] (still to write).",
+    "createdAt": "2025-05-15T09:00:00.000Z",
+    "updatedAt": "2025-05-18T09:00:00.000Z"
+  },
+  {
+    "id": "seed-note-reciprocity",
+    "title": "Reciprocity as quiet obligation",
+    "body": "\"We take turns watering — nobody asked us to, it just happens\" ([[Interview P01 — transcript]]). The watering rota is unspoken but binding: people say they would \"feel bad\" not returning the favour.\n\nSo reciprocity here is less an explicit rule than a quiet obligation. This connects back to [[Working memo — what builds belonging]], and sits in tension with the shed-lock dispute (ownership / who decides).",
+    "createdAt": "2025-05-16T09:00:00.000Z",
+    "updatedAt": "2025-05-16T09:00:00.000Z"
+  },
+  {
+    "id": "seed-note-method",
+    "title": "Method note — go-along interviews",
+    "body": "From [[Methods for Urban Ethnography]]: walking with participants surfaces place-meanings that sit-down interviews miss.\n\nNext visit: try a go-along with [[Maria (pseudonym)]] at her plot, and see whether the \"trowel\" story changes when told in place. Compare against the seated transcript [[Interview P01 — transcript]].",
+    "createdAt": "2025-05-17T09:00:00.000Z",
+    "updatedAt": "2025-05-17T09:00:00.000Z"
+  }
+]

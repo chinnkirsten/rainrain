@@ -1,0 +1,22 @@
+[
+  {
+    "id": "proj-gardens",
+    "name": "Community Gardens (demo)",
+    "variables": [
+      { "key": "gender", "label": "Gender", "type": "category", "facet": true },
+      { "key": "district", "label": "District", "type": "category", "facet": true },
+      { "key": "jobCategory", "label": "Occupation", "type": "category", "facet": true },
+      { "key": "ageGroup", "label": "Age group", "type": "category", "facet": true },
+      { "key": "education", "label": "Education", "type": "category", "facet": true },
+      { "key": "priority", "label": "Priority", "type": "category", "facet": true },
+      { "key": "age", "label": "Age", "type": "number" },
+      { "key": "currentJob", "label": "Current job", "type": "text" },
+      { "key": "residence", "label": "Residence", "type": "text" },
+      { "key": "years", "label": "Years in area", "type": "text" },
+      { "key": "origin", "label": "Origin", "type": "text" },
+      { "key": "income", "label": "Income", "type": "text" },
+      { "key": "interviewDate", "label": "Interview date", "type": "text" },
+      { "key": "duration", "label": "Duration", "type": "text" }
+    ]
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "P01", "project": "proj-gardens", "code": "P01", "name": "Maria (pseudonym)",
+    "values": { "gender": "Female", "district": "North", "jobCategory": "Public sector", "ageGroup": "30–39", "education": "Bachelor's", "priority": "Interviewed", "age": 34, "currentJob": "Primary school teacher", "residence": "Riverside", "years": "5 years", "origin": "Same city", "income": "Middle", "interviewDate": "2025-05-08", "duration": "52 min" },
+    "themes": ["belonging", "reciprocity"],
+    "notes": "Joined after a neighbour handed her a trowel; describes the garden as where she got to know the street.",
+    "followup": "Happy to do a go-along interview at the plot.",
+    "transcriptId": "seed-phd-tx-p01",
+    "materials": [{ "id": "seed-phd-audio-p01", "title": "Interview P01 — recording", "kind": "audio" }]
+  },
+  {
+    "id": "P02", "project": "proj-gardens", "code": "P02", "name": "James (pseudonym)",
+    "values": { "gender": "Male", "district": "South", "jobCategory": "Retired", "ageGroup": "60+", "education": "Secondary", "priority": "Interviewed", "age": 67, "currentJob": "Retired (was a carpenter)", "residence": "Old Town", "years": "22 years", "origin": "Moved from another region", "income": "Lower", "interviewDate": "2025-05-09", "duration": "47 min" },
+    "themes": ["ownership", "care"],
+    "notes": "Unofficial caretaker of the tool shed; strong views on who decides about shared kit.",
+    "transcriptId": null, "materials": []
+  },
+  {
+    "id": "P03", "project": "proj-gardens", "code": "P03", "name": "Wei (pseudonym)",
+    "values": { "gender": "Male", "district": "North", "jobCategory": "Private sector", "ageGroup": "40–49", "education": "Master's", "priority": "Interviewed", "age": 41, "currentJob": "Engineer", "residence": "Riverside", "years": "3 years", "origin": "Moved from abroad", "income": "Higher", "interviewDate": "2025-05-14", "duration": "39 min" },
+    "themes": ["belonging"],
+    "notes": "Says the garden was how his family met people after relocating.",
+    "transcriptId": null, "materials": []
+  },
+  {
+    "id": "P04", "project": "proj-gardens", "code": "P04", "name": "Aisha (pseudonym)",
+    "values": { "gender": "Female", "district": "West", "jobCategory": "Public sector", "ageGroup": "20–29", "education": "Bachelor's", "priority": "Follow-up", "age": 29, "currentJob": "Nurse", "residence": "Hillside", "years": "1 year", "origin": "Same city", "income": "Middle", "interviewDate": "2025-05-16", "duration": "44 min" },
+    "themes": ["care", "reciprocity"],
+    "notes": "Newer member; values the produce-sharing and the low-pressure way of joining in.",
+    "followup": "Wants to talk again after the harvest.",
+    "transcriptId": null, "materials": []
+  },
+  {
+    "id": "P05", "project": "proj-gardens", "code": "P05", "name": "Tom (pseudonym)",
+    "values": { "gender": "Male", "district": "South", "jobCategory": "Self-employed", "ageGroup": "50–59", "education": "Vocational", "priority": "To contact", "age": 52, "currentJob": "Shopkeeper", "residence": "Old Town", "years": "14 years", "origin": "Same city", "income": "Middle", "interviewDate": "", "duration": "" },
+    "themes": ["conflict"],
+    "notes": "Mentioned in fieldnotes re: the shed-lock dispute; not yet interviewed.",
+    "followup": "Approach via P02.",
+    "transcriptId": null, "materials": []
+  },
+  {
+    "id": "P06", "project": "proj-gardens", "code": "P06", "name": "Lena (pseudonym)",
+    "values": { "gender": "Female", "district": "West", "jobCategory": "Student", "ageGroup": "20–29", "education": "Student", "priority": "To contact", "age": 23, "currentJob": "Student", "residence": "Hillside", "years": "2 years", "origin": "Moved for study", "income": "Lower", "interviewDate": "", "duration": "" },
+    "themes": ["belonging"],
+    "notes": "Volunteers on weekends; potential younger-participant perspective.",
+    "transcriptId": null, "materials": []
+  }
+]

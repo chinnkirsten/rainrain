@@ -1,0 +1,49 @@
+name: Build Windows installer
+
+# 手动触发，或推送 v* 标签时触发
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies (Windows binaries)
+        run: npm ci
+
+      - name: Build English app + exe
+        shell: bash
+        run: npm run build && npx electron-builder --win --publish never
+        env:
+          BLOB_READ_WRITE_TOKEN: ""
+
+      - name: Stash English exe
+        shell: bash
+        run: mkdir -p out && mv dist/Rainrain-Setup-0.1.0.exe out/Rainrain-Setup-0.1.0.exe
+
+      - name: Build Chinese app + exe
+        shell: bash
+        run: rm -rf .next dist && npm run build && npx electron-builder --win --publish never
+        env:
+          BLOB_READ_WRITE_TOKEN: ""
+          NEXT_PUBLIC_LANG: "zh"
+
+      - name: Stash Chinese exe
+        shell: bash
+        run: mv dist/Rainrain-Setup-0.1.0.exe out/Rainrain-zh-Setup-0.1.0.exe
+
+      - name: Upload installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rainrain-Windows
+          path: out/*.exe
+          if-no-files-found: error

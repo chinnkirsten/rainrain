@@ -1,0 +1,21 @@
+{
+  "name": "Sam Avery",
+  "headline": "PhD Candidate in Sociology",
+  "affiliation": "Example University",
+  "location": "—",
+  "statement": "I study how shared urban spaces shape a sense of belonging. My doctoral research follows community gardens as sites where neighbours negotiate care, ownership and everyday cooperation. (This is sample content — replace it with your own on the profile/data file.)",
+  "currentFocus": "Doctoral fieldwork across three community gardens — interviews, participant observation, and a coding framework on belonging and reciprocity.",
+  "interests": ["Urban sociology", "Community & belonging", "Qualitative methods", "Public space"],
+  "education": [
+    { "degree": "PhD in Sociology (in progress)", "school": "Example University", "period": "Year 3" },
+    { "degree": "MA in Social Research", "school": "Example University", "period": "—" },
+    { "degree": "BA in Sociology", "school": "Example University", "period": "—" }
+  ],
+  "publications": [
+    { "authors": "Avery, S.", "title": "Tending Together: Reciprocity in Urban Community Gardens", "venue": "Working paper", "status": "draft" },
+    { "authors": "Avery, S.", "title": "Mapping Third Places in a Mid-Sized City", "venue": "Student Journal of Sociology", "status": "published" }
+  ],
+  "programmes": [],
+  "appointments": [],
+  "conferences": ["Urban Life Graduate Conference — “Belonging in Shared Space” (talk)"]
+}
