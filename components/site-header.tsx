@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { t } from "@/lib/i18n";
+import { t, LANG, switchLang } from "@/lib/i18n";
 import { BookIcon, LogoutIcon, MoonIcon, SettingsIcon, SunIcon } from "./icons";
 
 export function SiteHeader() {
@@ -90,6 +90,14 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <button
+            onClick={() => switchLang()}
+            className="rounded-full border border-line-strong px-2.5 py-1.5 text-xs text-ink-soft transition-colors hover:border-accent hover:text-accent"
+            title={LANG === "zh" ? "Switch to English" : "切换为中文"}
+            aria-label={LANG === "zh" ? "Switch to English" : "切换为中文"}
+          >
+            {LANG === "zh" ? "EN" : "中"}
+          </button>
           <button
             onClick={toggleTheme}
             className="rounded-full border border-line-strong p-2 text-ink-soft transition-colors hover:border-accent hover:text-accent"

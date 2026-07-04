@@ -63,7 +63,7 @@ export default function SummaryPage() {
     [pubs],
   );
 
-  const today = new Date().toLocaleDateString(dateLocale, {
+  const today = new Date().toLocaleDateString(dateLocale(), {
     year: "numeric",
     month: "long",
     day: "numeric",

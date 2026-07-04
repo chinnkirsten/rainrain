@@ -1,7 +1,31 @@
-// 集中式界面语言。默认英文；构建时用环境变量出中文版：NEXT_PUBLIC_LANG=zh npm run build
+// 集中式界面语言。构建时环境变量定默认（NEXT_PUBLIC_LANG=zh），运行时可切换：
+// 切换写入 localStorage + cookie（rr-lang）后整页刷新——客户端模块在加载时读到新语言，
+// 服务端组件用 langFrom(cookie) + tFor(lang) 按请求取字典，两端一致、无水合错位。
 export type Lang = "zh" | "en";
-// 用 `as Lang` 保持类型为联合，避免本文件内 LANG === "zh" 被判为"无重叠"
-export const LANG = (process.env.NEXT_PUBLIC_LANG === "zh" ? "zh" : "en") as Lang;
+// 用 `as Lang` 保持类型为联合，避免本文件内 === "zh" 被判为"无重叠"
+const BUILD_LANG = (process.env.NEXT_PUBLIC_LANG === "zh" ? "zh" : "en") as Lang;
+
+function clientLang(): Lang | null {
+  if (typeof document === "undefined") return null;
+  try {
+    const ls = localStorage.getItem("rr-lang");
+    if (ls === "zh" || ls === "en") return ls;
+  } catch {}
+  const m = /(?:^|;\s*)rr-lang=(zh|en)/.exec(document.cookie);
+  return m ? (m[1] as Lang) : null;
+}
+
+// 两端初始都用构建默认语言 —— 客户端水合与 SSR 完全一致，绝无水合错位。
+// 挂载后由 <LangProvider> 调 __applyClientLang() 换到用户语言并整树 remount。
+// 服务端组件页面各自读 cookie（tFor），首字节即正确语言。
+export let LANG: Lang = BUILD_LANG;
+
+/** 仅供 LangProvider 在挂载后调用：把模块语言切到用户存储的语言。 */
+export function __applyClientLang(): Lang {
+  const s = clientLang();
+  if (s) LANG = s;
+  return LANG;
+}
 
 // 每条 [中文, 英文]
 const S = {
@@ -578,9 +602,39 @@ const S = {
   val_undecided: ["未定", "Undecided"],
 } as const;
 
-export const t = Object.fromEntries(
-  Object.entries(S).map(([k, v]) => [k, LANG === "zh" ? v[0] : v[1]]),
-) as Record<keyof typeof S, string>;
+// Proxy：每次取值都按"当下"的 LANG 出字——服务端随请求变，客户端定格于加载时。
+export const t = new Proxy({} as Record<keyof typeof S, string>, {
+  get(_, k) {
+    const v = S[k as keyof typeof S];
+    if (!v) return undefined;
+    return LANG === "zh" ? v[0] : v[1];
+  },
+}) as Record<keyof typeof S, string>;
 
 export const nItems = (n: number) => (LANG === "zh" ? `${n} 项` : `${n} items`);
-export const dateLocale = LANG === "zh" ? "zh-CN" : "en-GB";
+// 函数而非常量：LANG 在挂载后可能被 LangProvider 切换
+export const dateLocale = () => (LANG === "zh" ? "zh-CN" : "en-GB");
+
+/* ———— 服务端按请求语言取字典（客户端组件直接用上面的 t） ———— */
+
+export function langFrom(cookieVal: string | undefined | null): Lang {
+  return cookieVal === "zh" || cookieVal === "en" ? cookieVal : BUILD_LANG;
+}
+
+const DICTS: Record<Lang, Record<keyof typeof S, string>> = {
+  zh: Object.fromEntries(Object.entries(S).map(([k, v]) => [k, v[0]])) as Record<keyof typeof S, string>,
+  en: Object.fromEntries(Object.entries(S).map(([k, v]) => [k, v[1]])) as Record<keyof typeof S, string>,
+};
+export const tFor = (lang: Lang) => DICTS[lang];
+export const nItemsFor = (lang: Lang, n: number) => (lang === "zh" ? `${n} 项` : `${n} items`);
+
+/** 客户端切换语言：写 localStorage + cookie 后整页刷新（服务端下次渲染即读到）。 */
+export function switchLang(next?: Lang): void {
+  if (typeof document === "undefined") return;
+  const to = next ?? (LANG === "zh" ? "en" : "zh");
+  try {
+    localStorage.setItem("rr-lang", to);
+  } catch {}
+  document.cookie = `rr-lang=${to}; path=/; max-age=31536000; samesite=lax`;
+  location.reload();
+}

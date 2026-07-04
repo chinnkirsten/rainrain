@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BookIcon } from "@/components/icons";
-import { t } from "@/lib/i18n";
+import { t, LANG, switchLang } from "@/lib/i18n";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,6 +38,13 @@ export default function LoginPage() {
 
   return (
     <main className="paper-grain flex min-h-screen items-center justify-center px-5">
+      <button
+        onClick={() => switchLang()}
+        className="absolute right-4 top-4 rounded-full border border-line-strong px-3 py-1.5 text-xs text-ink-soft transition-colors hover:border-accent hover:text-accent"
+        title={LANG === "zh" ? "Switch to English" : "切换为中文"}
+      >
+        {LANG === "zh" ? "EN" : "中文"}
+      </button>
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-paper">

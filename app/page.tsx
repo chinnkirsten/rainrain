@@ -5,12 +5,15 @@ import { ArrowIcon, EditIcon, KindIcon } from "@/components/icons";
 import { topPhasesOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
 import { getAllItems, toPublicItem } from "@/lib/catalog";
-import { t, nItems } from "@/lib/i18n";
+import { cookies } from "next/headers";
+import { tFor, nItemsFor, langFrom } from "@/lib/i18n";
 import { RecentStrip } from "@/components/recent-strip";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
+  const lang = langFrom((await cookies()).get("rr-lang")?.value);
+  const T = tFor(lang);
   const all = (await getAllItems()).map(toPublicItem);
   const phases = await loadPhases();
   const countOf = (phaseId: string) => all.filter((i) => i.phase === phaseId).length;
@@ -26,27 +29,27 @@ export default async function HomePage() {
         {/* Hero */}
         <section className="flex flex-col items-start gap-5 py-12 md:py-16">
           <h1 className="max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
-            {t.brand}
+            {T.brand}
           </h1>
           <p className="max-w-2xl text-base leading-relaxed text-ink-soft">
-            {t.home_subtitle}
+            {T.home_subtitle}
           </p>
           <div className="flex flex-wrap gap-3 pt-1">
             <Link
               href="/library"
               className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm text-paper transition-opacity hover:opacity-90"
             >
-              {t.home_browse}
+              {T.home_browse}
               <ArrowIcon className="h-4 w-4" />
             </Link>
             <Link
               href="/summary"
               className="inline-flex items-center rounded-full border border-line-strong px-5 py-2.5 text-sm text-ink-soft transition-colors hover:border-accent hover:text-accent"
             >
-              {t.home_buildSummary}
+              {T.home_buildSummary}
             </Link>
             <span className="inline-flex items-center rounded-full border border-line-strong px-5 py-2.5 text-sm text-muted">
-              {nItems(all.length)}
+              {nItemsFor(lang, all.length)}
             </span>
           </div>
         </section>
@@ -58,15 +61,15 @@ export default async function HomePage() {
         <section className="py-4">
           <div className="mb-6 flex items-start justify-between gap-4">
             <div className="flex flex-col gap-1">
-              <h2 className="rr-sec font-serif text-xl text-ink">{t.home_journey}</h2>
-              <p className="max-w-xl text-xs leading-relaxed text-muted">{t.home_journey_hint}</p>
+              <h2 className="rr-sec font-serif text-xl text-ink">{T.home_journey}</h2>
+              <p className="max-w-xl text-xs leading-relaxed text-muted">{T.home_journey_hint}</p>
             </div>
             <Link
               href="/structure"
               className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-sm text-ink-soft transition-colors hover:border-accent hover:text-accent"
             >
               <EditIcon className="h-3.5 w-3.5" />
-              {t.struct_edit}
+              {T.struct_edit}
             </Link>
           </div>
           <div className="flex flex-col gap-4">
@@ -101,7 +104,7 @@ export default async function HomePage() {
                     </div>
                     <div className="flex flex-col items-end justify-between text-right">
                       <span className="text-sm tabular-nums text-muted">
-                        {nItems(total)}
+                        {nItemsFor(lang, total)}
                       </span>
                       <ArrowIcon className="h-5 w-5 text-muted transition-transform group-hover:translate-x-1 group-hover:text-ink" />
                     </div>
@@ -122,14 +125,14 @@ export default async function HomePage() {
                           />
                           <div className="flex flex-1 flex-col gap-0.5">
                             <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                              <span className="text-[11px] text-muted">{t.home_subtopic}</span>
+                              <span className="text-[11px] text-muted">{T.home_subtopic}</span>
                               <h4 className="font-serif text-base text-ink">{c.title}</h4>
                               {c.featured && (
                                 <span
                                   className="rounded-full px-2 py-0.5 text-[10px] text-white"
                                   style={{ backgroundColor: c.accent }}
                                 >
-                                  {t.home_inProgress}
+                                  {T.home_inProgress}
                                 </span>
                               )}
                             </div>
@@ -138,7 +141,7 @@ export default async function HomePage() {
                             </p>
                           </div>
                           <span className="shrink-0 text-sm tabular-nums text-muted">
-                            {nItems(countOf(c.id))}
+                            {nItemsFor(lang, countOf(c.id))}
                           </span>
                           <ArrowIcon className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink" />
                         </Link>
@@ -155,9 +158,9 @@ export default async function HomePage() {
         {recent.length > 0 && (
           <section className="py-10">
             <div className="mb-5 flex items-center justify-between">
-              <h2 className="font-serif text-xl text-ink">{t.home_recent}</h2>
+              <h2 className="font-serif text-xl text-ink">{T.home_recent}</h2>
               <Link href="/library" className="text-sm text-muted hover:text-accent">
-                {t.home_viewAll}
+                {T.home_viewAll}
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
@@ -192,7 +195,7 @@ export default async function HomePage() {
       </main>
 
       <footer className="border-t border-line py-6 text-center text-xs text-muted">
-        {t.footer}
+        {T.footer}
       </footer>
     </>
   );

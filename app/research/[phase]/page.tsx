@@ -7,7 +7,8 @@ import { ArrowIcon } from "@/components/icons";
 import { DEFAULT_PHASES, mapOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
 import { getAllItems } from "@/lib/catalog";
-import { t, nItems } from "@/lib/i18n";
+import { cookies } from "next/headers";
+import { tFor, nItemsFor, langFrom } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,8 @@ export default async function PhasePage({
 }: {
   params: Promise<{ phase: string }>;
 }) {
+  const lang = langFrom((await cookies()).get("rr-lang")?.value);
+  const T = tFor(lang);
   const { phase } = await params;
   const phases = await loadPhases();
   const map = mapOf(phases);
@@ -52,7 +55,7 @@ export default async function PhasePage({
               href={`/research/${parent.id}`}
               className="mb-1 inline-block text-xs text-muted hover:text-accent"
             >
-              ← {t.phase_partOf} {parent.title}
+              ← {T.phase_partOf} {parent.title}
             </Link>
           )}
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -68,7 +71,7 @@ export default async function PhasePage({
         {/* 子课题 */}
         {kids.length > 0 && (
           <section className="mb-8">
-            <h2 className="mb-3 text-sm font-medium text-muted">{t.phase_subtopics}</h2>
+            <h2 className="mb-3 text-sm font-medium text-muted">{T.phase_subtopics}</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               {kids.map((c) => (
                 <Link
@@ -87,7 +90,7 @@ export default async function PhasePage({
                     </p>
                   </div>
                   <span className="shrink-0 text-sm tabular-nums text-muted">
-                    {nItems(countOf(c.id))}
+                    {nItemsFor(lang, countOf(c.id))}
                   </span>
                   <ArrowIcon className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink" />
                 </Link>
