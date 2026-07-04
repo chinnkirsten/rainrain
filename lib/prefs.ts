@@ -11,7 +11,8 @@ export type Prefs = {
   fontSize: 15 | 16 | 17;
 };
 
-export const DEFAULT_PREFS: Prefs = { petals: "std", cat: true, entrance: true, sound: false, fontSize: 16 };
+// 默认全静：画是静态的，动画/花瓣要在设置里主动打开
+export const DEFAULT_PREFS: Prefs = { petals: "off", cat: true, entrance: false, sound: false, fontSize: 16 };
 
 export function getPrefs(): Prefs {
   try {

@@ -25,7 +25,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   // 主题 + 氛围偏好：首帧前应用，避免闪烁（字号走 html font-size，rem 全局缩放）
-  const themeScript = `try{var s=localStorage.getItem('theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.dataset.theme='dark';}var p=JSON.parse(localStorage.getItem('rr-prefs')||'{}');if(p.fontSize)document.documentElement.style.fontSize=p.fontSize+'px';if(p.entrance===false)document.documentElement.classList.add('rr-no-anim');if(p.cat===false)document.documentElement.classList.add('rr-no-cat');}catch(e){}`;
+  const themeScript = `try{var s=localStorage.getItem('theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.dataset.theme='dark';}var p=JSON.parse(localStorage.getItem('rr-prefs')||'{}');if(p.fontSize)document.documentElement.style.fontSize=p.fontSize+'px';if(p.entrance!==true)document.documentElement.classList.add('rr-no-anim');if(p.cat===false)document.documentElement.classList.add('rr-no-cat');}catch(e){}`;
   return (
     <html
       lang={LANG === "zh" ? "zh-CN" : "en"}

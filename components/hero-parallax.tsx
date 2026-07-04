@@ -9,6 +9,7 @@ export function HeroParallax({ children, className = "" }: { children: React.Rea
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (document.documentElement.classList.contains("rr-no-anim")) return;
     const el = ref.current;
     if (!el) return;
     let raf = 0;

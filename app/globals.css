@@ -314,6 +314,12 @@ body {
 .rr-no-anim .rr-branch-sway,
 .rr-no-anim .rr-wash,
 .rr-no-anim main,
+.rr-no-anim .rr-cat-tail,
+.rr-no-anim .rr-cat-ear,
+.rr-no-anim .rr-cat-eye,
+.rr-no-anim .rr-cat-hop,
+.rr-no-anim .rr-lantern-sway,
+.rr-no-anim .animate-fade-in,
 .rr-no-anim .rr-stagger > * { animation: none; }
 .rr-no-anim .rr-cat2 { animation: none; transform: translate(802px, 119px); }
 .rr-no-anim .rr-cat2-core { animation: none; transform: scale(1.75); }
