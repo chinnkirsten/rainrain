@@ -17,7 +17,10 @@
     "lint": "eslint",
     "electron": "electron .",
     "dist:win": "next build && electron-builder --win",
-    "dist:mac": "next build && electron-builder --mac"
+    "dist:mac": "next build && electron-builder --mac",
+    "test": "npm run test:unit && npm run test:api",
+    "test:unit": "node --test tests/unit.test.mjs",
+    "test:api": "node tests/api-smoke.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.5.0",
@@ -51,7 +54,9 @@
     "appId": "com.shekemaocaowu.rainrain",
     "productName": "Rainrain",
     "asar": false,
-    "directories": { "output": "dist" },
+    "directories": {
+      "output": "dist"
+    },
     "files": [
       "electron/**",
       ".next/**",
@@ -64,7 +69,9 @@
       "!**/*.map"
     ],
     "win": {
-      "target": ["nsis"],
+      "target": [
+        "nsis"
+      ],
       "artifactName": "Rainrain-Setup-${version}.exe"
     },
     "nsis": {
@@ -72,6 +79,10 @@
       "perMachine": false,
       "allowToChangeInstallationDirectory": true
     },
-    "mac": { "target": ["dir"] }
+    "mac": {
+      "target": [
+        "dir"
+      ]
+    }
   }
 }
