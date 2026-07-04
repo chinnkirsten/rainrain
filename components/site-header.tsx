@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { t, LANG, switchLang } from "@/lib/i18n";
-import { BookIcon, LogoutIcon, MoonIcon, SettingsIcon, SunIcon } from "./icons";
+import { LogoutIcon, MoonIcon, SettingsIcon, SunIcon } from "./icons";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -65,10 +65,7 @@ export function SiteHeader() {
   return (
     <header ref={headerRef} className="no-print sticky top-0 z-30 border-b border-line bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-accent text-paper">
-            <BookIcon className="h-[18px] w-[18px]" />
-          </span>
+        <Link href="/" className="flex shrink-0 items-center">
           <span className="font-serif text-[17px] leading-tight">{t.brand}</span>
         </Link>
 

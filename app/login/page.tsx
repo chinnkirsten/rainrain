@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookIcon } from "@/components/icons";
 import { t, LANG, switchLang } from "@/lib/i18n";
 
 export default function LoginPage() {
@@ -47,9 +46,6 @@ export default function LoginPage() {
       </button>
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
-          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-paper">
-            <BookIcon className="h-6 w-6" />
-          </span>
           <h1 className="font-serif text-2xl">{t.brand}</h1>
           <p className="text-sm text-muted">{t.login_subtitle}</p>
         </div>
