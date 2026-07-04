@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { addReading, getReadings } from "@/lib/catalog";
-import { composeCitation } from "@/lib/reference";
+import { formatCitation } from "@/lib/ref-format";
 import type { Reading, RefType } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -42,26 +42,29 @@ export async function POST(req: Request) {
     pages: str(b.pages),
     doi: str(b.doi),
     url: str(b.url),
-    year: str(b.year),
   };
 
+  // year：优先显式字段，否则沿用「从用户提交的原始 citation 文本里提年份」的既有逻辑
+  // （若走下面的 formatCitation 自动生成分支，生成串本就不含年份之外的信息，regex 无需对它跑）
   const rawCitation = String(b.citation ?? "").trim();
-  const citation = rawCitation || composeCitation({ ...structured, tags });
-  if (!citation) return NextResponse.json({ error: "Missing citation." }, { status: 400 });
+  const ymatch = /(\d{4})/.exec(rawCitation);
+  const year = str(b.year) ?? (ymatch ? ymatch[1] : undefined);
 
-  const ymatch = /(\d{4})/.exec(citation);
-  const { year: sy, ...restStructured } = structured;
   const r: Reading = {
     id: crypto.randomUUID(),
-    citation,
+    citation: rawCitation,
     tags,
     note: str(b.note),
     read: b.read === false ? false : true,
     phase: str(b.phase),
     createdAt: new Date().toISOString(),
-    ...restStructured,
-    year: sy ?? (ymatch ? ymatch[1] : undefined),
+    ...structured,
+    year,
   };
+  // 未提供 citation 但有 title：用结构化字段合成一条规范 GB/T 7714 题录存起来
+  if (!r.citation && r.title) r.citation = formatCitation(r, "gb");
+  if (!r.citation) return NextResponse.json({ error: "Missing citation." }, { status: 400 });
+
   await addReading(r);
   return NextResponse.json({ reading: r });
 }

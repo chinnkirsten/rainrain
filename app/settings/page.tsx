@@ -31,6 +31,17 @@ export default function SettingsPage() {
   useEffect(() => setPrefs(getPrefs()), []);
   const patchPrefs = (p: Partial<Prefs>) => setPrefs(savePrefs(p));
 
+  // 资料库占用（本地模式才有）
+  const [usage, setUsage] = useState<number | null>(null);
+  useEffect(() => {
+    fetch("/api/usage")
+      .then((r) => r.json())
+      .then((d) => setUsage(typeof d.bytes === "number" ? d.bytes : null))
+      .catch(() => {});
+  }, []);
+  const fmtBytes = (n: number) =>
+    n > 1 << 30 ? `${(n / (1 << 30)).toFixed(1)} GB` : n > 1 << 20 ? `${(n / (1 << 20)).toFixed(1)} MB` : `${Math.round(n / 1024)} KB`;
+
   useEffect(() => {
     fetch("/api/anon")
       .then((r) => r.json())
@@ -163,9 +174,22 @@ export default function SettingsPage() {
           <h2 className="font-serif text-lg text-ink">{t.set_backup}</h2>
           <p className="mt-1 text-sm leading-relaxed text-ink-soft">{t.set_backup_desc}</p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
-            <a href="/api/backup" className="rounded-full bg-ink px-4 py-2 text-sm text-paper transition-opacity hover:opacity-90">
+            <a
+              href="/api/backup"
+              onClick={() => {
+                try {
+                  localStorage.setItem("rr-last-backup", String(Date.now()));
+                } catch {}
+              }}
+              className="rounded-full bg-ink px-4 py-2 text-sm text-paper transition-opacity hover:opacity-90"
+            >
               {t.set_backup_download}
             </a>
+            {usage != null && (
+              <span className="text-xs text-muted">
+                {t.set_usage}: {fmtBytes(usage)}
+              </span>
+            )}
             <label className="cursor-pointer rounded-full border border-line-strong px-4 py-2 text-sm text-ink-soft transition-colors hover:border-accent hover:text-accent">
               {restoring ? t.set_backup_restoring : t.set_backup_restore}
               <input

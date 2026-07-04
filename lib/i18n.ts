@@ -211,6 +211,36 @@ const S = {
   login_remember: ["记住我（本机 30 天）", "Remember me on this device (30 days)"],
   empty_poem: ["此处尚无花开。", "Nothing has bloomed here yet."],
 
+  // 文献 · 结构化引用
+  read_copied: ["已复制 ✓", "Copied ✓"],
+  read_edit: ["编辑", "Edit"],
+
+  // 全局搜索（⌘K）
+  pal_ph: ["搜索全库：史料 / 文献 / 笔记 / 证据 / 受访者…", "Search everything: sources / readings / notes / evidence / respondents…"],
+  pal_none: ["没有匹配。", "No matches."],
+  pal_hint: ["↑↓ 选择 · Enter 打开 · Esc 关闭", "↑↓ select · Enter open · Esc close"],
+
+  // 编码本 · 定义 / 层级 / 共现
+  cb_def: ["定义", "Definition"],
+  cb_defPh: ["这个码指什么、何时用、何时不用…", "What this code means, when to use it, when not…"],
+  cb_parent: ["父级", "Parent"],
+  cb_top: ["（顶级）", "(top level)"],
+  cb_cooc: ["共现矩阵", "Co-occurrence"],
+  cb_cooc_desc: [
+    "两个码出现在同一条摘录里的次数——高共现提示主题可能相关或重叠。",
+    "How often two codes appear in the same excerpt — high counts hint at related or overlapping themes.",
+  ],
+
+  // 证据 · 写作导出
+  ev_exportDoc: ["导出 Word", "Export Word"],
+
+  // 备份提醒 / 用量
+  bk_never: ["还没做过备份——建议去设置页下载一份 zip 存好。", "No backup yet — download a zip in Settings and keep it safe."],
+  bk_old: ["距上次备份已超过 7 天——去设置页下载一份新的 zip 吧。", "It's been over a week since your last backup — grab a fresh zip in Settings."],
+  bk_go: ["去备份", "Back up"],
+  bk_snooze: ["本周不再提醒", "Snooze for a week"],
+  set_usage: ["资料库占用", "Library size"],
+
   // 设置 · 氛围
   set_atmo: ["氛围", "Atmosphere"],
   set_atmo_sound: ["禅音（风铃，极轻）", "Zen chime (very quiet)"],
@@ -519,9 +549,7 @@ const S = {
   rt_web: ["网络资源", "Web"],
   rt_other: ["其他", "Other"],
   read_cite: ["引用", "Cite"],
-  read_edit: ["编辑著录", "Edit fields"],
   read_copy: ["复制", "Copy"],
-  read_copied: ["已复制", "Copied"],
   read_export: ["导出", "Export"],
   cite_apa: ["APA 7", "APA 7"],
   cite_chicago: ["Chicago", "Chicago"],

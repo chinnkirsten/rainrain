@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/TextLayer.css";
 import { t } from "@/lib/i18n";
 
 // 离线 worker（public/），版本须与 react-pdf 内置 pdfjs 一致
@@ -10,7 +11,15 @@ pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 const MIN = 0.5;
 const MAX = 4;
 
-export function PdfViewer({ src }: { src: string; title?: string }) {
+export function PdfViewer({
+  src,
+  onTextSelect,
+}: {
+  src: string;
+  title?: string;
+  /** 文本层划选后回调（文字、当前页码、选区位置）——用于「划线成证据」 */
+  onTextSelect?: (text: string, page: number, rect: DOMRect) => void;
+}) {
   const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(1);
   const [baseWidth, setBaseWidth] = useState(0);
@@ -37,7 +46,17 @@ export function PdfViewer({ src }: { src: string; title?: string }) {
   const zoom = (d: number) => setScale((s) => Math.min(MAX, Math.max(MIN, Math.round((s + d) * 100) / 100)));
 
   return (
-    <div ref={wrapRef} className="flex h-[44vh] w-full flex-col bg-paper-2 md:h-[92vh]">
+    <div
+      ref={wrapRef}
+      className="flex h-[44vh] w-full flex-col bg-paper-2 md:h-[92vh]"
+      onMouseUp={() => {
+        if (!onTextSelect) return;
+        const s = window.getSelection();
+        const text = s?.toString().trim() ?? "";
+        if (!text || !s || !wrapRef.current?.contains(s.anchorNode)) return;
+        onTextSelect(text, page, s.getRangeAt(0).getBoundingClientRect());
+      }}
+    >
       <div ref={scrollRef} className="flex-1 overflow-auto">
         {err ? (
           <div className="flex h-full items-center justify-center px-6 text-center text-sm text-muted">
@@ -60,7 +79,7 @@ export function PdfViewer({ src }: { src: string; title?: string }) {
                 <Page
                   pageNumber={page}
                   width={baseWidth ? Math.round(baseWidth * scale) : undefined}
-                  renderTextLayer={false}
+                  renderTextLayer
                   renderAnnotationLayer={false}
                   loading={<div className="px-6 py-10 text-center text-sm text-muted">{t.loading}</div>}
                 />

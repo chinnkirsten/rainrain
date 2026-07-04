@@ -56,7 +56,7 @@ export function ItemViewer({
     error: null,
     copied: false,
   });
-  const [sel, setSel] = useState<{ text: string; top: number; left: number } | null>(null);
+  const [sel, setSel] = useState<{ text: string; top: number; left: number; page?: string } | null>(null);
   const [exForm, setExForm] = useState<{ quote: string; note: string; tags: string; page: string } | null>(null);
   const docRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({
@@ -341,7 +341,13 @@ export function ItemViewer({
               className="max-h-[40vh] w-full object-contain md:max-h-[92vh]"
             />
           ) : item.kind === "pdf" ? (
-            <PdfViewer src={item.src} title={item.title} />
+            <PdfViewer
+              src={item.src}
+              title={item.title}
+              onTextSelect={(text, page, rect) =>
+                setSel({ text, top: rect.top - 6, left: rect.left + rect.width / 2, page: String(page) })
+              }
+            />
           ) : item.kind === "audio" ? (
             <div className="flex w-full flex-col items-center gap-5 p-8">
               <KindIcon kind="audio" className="h-16 w-16 text-accent opacity-70" />
@@ -685,7 +691,7 @@ export function ItemViewer({
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation();
-            setExForm({ quote: sel.text, note: "", tags: "", page: "" });
+            setExForm({ quote: sel.text, note: "", tags: "", page: sel.page ?? "" });
           }}
           style={{ position: "fixed", top: sel.top, left: sel.left, transform: "translate(-50%,-100%)" }}
           className="z-[60] rounded-full bg-accent px-3 py-1.5 text-xs text-white shadow-lg"

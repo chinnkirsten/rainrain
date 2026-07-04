@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
+import { BackupNudge } from "@/components/backup-nudge";
 import { ArrowIcon, EditIcon, KindIcon } from "@/components/icons";
 import { topPhasesOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
@@ -21,6 +22,7 @@ export default async function HomePage() {
     <>
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-20">
+        <BackupNudge />
         {/* Hero */}
         <section className="flex flex-col items-start gap-5 py-12 md:py-16">
           <h1 className="max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">

@@ -5,6 +5,7 @@ import "./globals.css";
 import { LANG, t } from "@/lib/i18n";
 import { StructureProvider } from "@/components/structure-provider";
 import { ZenChime } from "@/components/zen-chime";
+import { CommandPalette } from "@/components/command-palette";
 
 const display = Newsreader({
   variable: "--font-display",
@@ -36,6 +37,7 @@ export default function RootLayout({
           {themeScript}
         </Script>
         <StructureProvider>{children}</StructureProvider>
+        <CommandPalette />
         <ZenChime />
       </body>
     </html>
