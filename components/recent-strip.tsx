@@ -34,7 +34,7 @@ export function RecentStrip() {
   return (
     <section className="py-4">
       <h2 className="mb-4 font-serif text-xl text-ink">{t.home_recent_viewed}</h2>
-      <div className="no-scrollbar flex gap-3 overflow-x-auto pb-1 rr-stagger">
+      <div className="no-scrollbar flex gap-3 overflow-x-auto pb-1">
         {items.map((it) => {
           const img = it.kind === "image" ? it.src : it.cover;
           return (

@@ -269,7 +269,7 @@ export default function NotesPage() {
                 placeholder={t.notes_search}
                 className="w-full rounded-full border border-line-strong bg-card px-4 py-2 text-sm text-ink outline-none focus:border-accent"
               />
-              <div className="flex flex-col gap-1 rr-stagger">
+              <div className="flex flex-col gap-1">
                 {loading ? (
                   <InkLoading />
                 ) : filteredNotes.length === 0 ? (

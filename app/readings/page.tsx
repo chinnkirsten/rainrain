@@ -365,7 +365,7 @@ export default function ReadingsPage() {
             <InkEmpty hint={t.read_none} />
           </div>
         ) : (
-          <div className="flex flex-col gap-2 rr-stagger">
+          <div className="flex flex-col gap-2">
             {filtered.map((r) => {
               const structured = !!r.title;
               const meta = [r.authors?.join(", "), r.year, r.container].filter(Boolean).join(" · ");

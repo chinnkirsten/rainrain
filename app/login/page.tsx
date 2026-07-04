@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { InkPainting } from "@/components/ink-painting";
-import { InkCat } from "@/components/ink-cat";
+import { BookIcon } from "@/components/icons";
 import { t } from "@/lib/i18n";
 
 export default function LoginPage() {
@@ -32,43 +31,25 @@ export default function LoginPage() {
     } catch (e) {
       setError((e as Error).message);
       setBusy(false);
-      // 错误反馈：卡片轻抖三下，枝头的猫甩一下尾巴
       setShake((v) => v + 1);
       setTimeout(() => setShake(0), 600);
-      window.dispatchEvent(new CustomEvent("rr-cat-flick"));
     }
   }
 
   return (
-    <main className="paper-grain relative flex min-h-screen justify-center overflow-hidden px-5">
-      {/* 整幅水墨樱梅铺满入口；小黑猫同坐标系叠在枝头 */}
-      <InkPainting variant="entrance" className="pointer-events-none absolute inset-0 h-full w-full select-none" />
-      <InkCat />
-
-      {/* 大字水印：淡墨「花」 */}
-      <span aria-hidden className="rr-wm font-serif absolute left-[6%] top-1/2 hidden -translate-y-1/2 text-[240px] lg:block">
-        花
-      </span>
-
-      {/* 竖排题字（书脊式 RainRain） */}
-      <div
-        aria-hidden
-        className="rr-vertical pointer-events-none absolute left-7 top-1/2 hidden -translate-y-1/2 select-none items-center gap-4 font-serif text-[15px] italic tracking-[0.35em] text-ink-soft/80 sm:flex"
-      >
-        <span>RainRain</span>
-        <span className="mt-1 inline-block h-2 w-2 rounded-[2px] bg-accent/80" />
-      </div>
-
-      <div className="relative mt-[clamp(150px,24vh,300px)] w-full max-w-sm pb-16">
+    <main className="paper-grain flex min-h-screen items-center justify-center px-5">
+      <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
-          <h1 className="font-serif text-4xl leading-tight text-ink">{t.brand}</h1>
-          <p className="font-serif text-[15px] italic leading-relaxed text-ink-soft">{t.login_poem}</p>
-          <p className="text-xs text-muted">{t.login_subtitle}</p>
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-paper">
+            <BookIcon className="h-6 w-6" />
+          </span>
+          <h1 className="font-serif text-2xl">{t.brand}</h1>
+          <p className="text-sm text-muted">{t.login_subtitle}</p>
         </div>
 
         <form
           onSubmit={submit}
-          className={`flex flex-col gap-3 rounded-2xl border border-line bg-card/85 p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)] backdrop-blur-md ${shake ? "rr-shake" : ""}`}
+          className={`flex flex-col gap-3 rounded-2xl border border-line bg-card p-6 shadow-sm ${shake ? "rr-shake" : ""}`}
         >
           <label className="flex flex-col gap-1.5 text-sm">
             <span className="text-muted">{t.login_password}</span>
@@ -77,7 +58,7 @@ export default function LoginPage() {
               autoFocus
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="rounded-lg border border-line-strong bg-paper/80 px-3 py-2.5 text-ink outline-none focus:border-accent"
+              className="rounded-lg border border-line-strong bg-paper px-3 py-2.5 text-ink outline-none focus:border-accent"
               placeholder="••••••••"
             />
           </label>

@@ -323,7 +323,7 @@ export default function EvidencePage() {
             <p className="mt-1 text-sm text-muted">{t.ev_emptyHint}</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-3 rr-stagger">
+          <div className="flex flex-col gap-3">
             {filtered.map((e) => {
               const phase = phaseMap[e.phase];
               return (

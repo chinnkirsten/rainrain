@@ -180,7 +180,7 @@ export default function LogPage() {
         )}
 
         {/* Timeline */}
-        <div className="mt-4 flex flex-col gap-3 rr-stagger">
+        <div className="mt-4 flex flex-col gap-3">
           {loading ? (
             <InkLoading />
           ) : shown.length === 0 ? (

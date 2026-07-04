@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
-import { InkPainting } from "@/components/ink-painting";
-import { HeroParallax } from "@/components/hero-parallax";
 import { ArrowIcon, EditIcon, KindIcon } from "@/components/icons";
 import { topPhasesOf, childrenInOf } from "@/lib/phases";
 import { loadPhases } from "@/lib/structure";
@@ -24,21 +22,14 @@ export default async function HomePage() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-20">
         {/* Hero */}
-        <section className="relative flex flex-col items-start gap-5 py-12 md:py-16">
-          <HeroParallax className="pointer-events-none absolute -right-10 -top-12 w-[min(56vw,640px)] select-none max-sm:-top-6 max-sm:w-[78vw] max-sm:opacity-50">
-            <InkPainting variant="hero" className="h-auto w-full" />
-          </HeroParallax>
-          <h1 className="relative max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
+        <section className="flex flex-col items-start gap-5 py-12 md:py-16">
+          <h1 className="max-w-3xl font-serif text-4xl leading-tight text-ink md:text-5xl">
             {t.brand}
           </h1>
-          <p className="relative max-w-2xl text-base leading-relaxed text-ink-soft">
+          <p className="max-w-2xl text-base leading-relaxed text-ink-soft">
             {t.home_subtitle}
           </p>
-          <p className="relative flex items-center gap-3 font-serif text-[15px] italic text-muted">
-            <span aria-hidden className="inline-block h-px w-10 bg-ink/30" />
-            {t.home_poem}
-          </p>
-          <div className="relative flex flex-wrap gap-3 pt-1">
+          <div className="flex flex-wrap gap-3 pt-1">
             <Link
               href="/library"
               className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm text-paper transition-opacity hover:opacity-90"

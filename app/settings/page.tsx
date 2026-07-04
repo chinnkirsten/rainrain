@@ -112,36 +112,10 @@ export default function SettingsPage() {
         <h1 className="font-serif text-3xl text-ink">{t.set_title}</h1>
         <BrushRule className="mt-1.5" />
 
-        {/* 氛围：花瓣 / 小猫 / 入场 / 禅音 / 字号（本机偏好，即时生效） */}
+        {/* 界面偏好：字号 / 禅音（本机生效） */}
         <section className="mt-6 rounded-[var(--radius-card)] border border-line bg-card p-5">
           <h2 className="font-serif text-lg text-ink">{t.set_atmo}</h2>
-          <p className="mt-1 text-sm leading-relaxed text-ink-soft">{t.set_atmo_desc}</p>
           <div className="mt-4 flex flex-col gap-3 text-sm">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="w-32 text-muted">{t.set_atmo_petals}</span>
-              {([["off", t.set_atmo_petals_off], ["low", t.set_atmo_petals_low], ["std", t.set_atmo_petals_std]] as const).map(([v, label]) => (
-                <button
-                  key={v}
-                  onClick={() => patchPrefs({ petals: v })}
-                  className={`rounded-full px-3 py-1 text-xs transition-colors ${
-                    prefs.petals === v ? "bg-accent text-white" : "bg-paper-2 text-ink-soft hover:bg-line"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            {([["cat", t.set_atmo_cat], ["entrance", t.set_atmo_entrance], ["sound", t.set_atmo_sound]] as const).map(([k, label]) => (
-              <label key={k} className="flex cursor-pointer items-center gap-3">
-                <span className="w-32 text-muted">{label}</span>
-                <input
-                  type="checkbox"
-                  checked={prefs[k] as boolean}
-                  onChange={(e) => patchPrefs({ [k]: e.target.checked } as Partial<Prefs>)}
-                  className="h-4 w-4 cursor-pointer accent-[var(--accent)]"
-                />
-              </label>
-            ))}
             <div className="flex flex-wrap items-center gap-3">
               <span className="w-32 text-muted">{t.set_fontSize}</span>
               {([15, 16, 17] as const).map((v) => (
@@ -156,6 +130,15 @@ export default function SettingsPage() {
                 </button>
               ))}
             </div>
+            <label className="flex cursor-pointer items-center gap-3">
+              <span className="w-32 text-muted">{t.set_atmo_sound}</span>
+              <input
+                type="checkbox"
+                checked={prefs.sound}
+                onChange={(e) => patchPrefs({ sound: e.target.checked })}
+                className="h-4 w-4 cursor-pointer accent-[var(--accent)]"
+              />
+            </label>
           </div>
         </section>
 
