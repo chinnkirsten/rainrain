@@ -20,11 +20,17 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
 2. 大概率弹一个蓝色全屏提示「**Windows 已保护你的电脑**」——**这不是病毒警告**，只是这个软件没花钱买微软的签名证书。点左边的小字「**更多信息**」，再点「**仍要运行**」。
 3. 后面就是普通安装，一路下一步。装完开始菜单/桌面就有 Rainrain。
 
+![Windows 弹「已保护你的电脑」时：点小字「更多信息」，才会出现「仍要运行」](docs/images/install-01-windows.png)
+
+
 ### Mac（Apple 芯片，即 M1/M2/M3/M4 的机器；老款 Intel Mac 暂不支持）
 
 1. 下载 `Rainrain-0.2.0-arm64.dmg`，双击打开——弹出的小窗口里有三样东西：**Rainrain 图标、Applications 文件夹、《安装必读.txt》**。
 2. 把 **Rainrain 图标拖到旁边的 Applications 上**，等复制完（文件挺大，几秒到一分钟）。
 3. **关键一步，别跳过**：打开「访达 → 应用程序」，亲眼确认 Rainrain 真的在里面——拖拽偶尔会静默失败，没报错 ≠ 装好了。不在就再拖一次。
+
+![拖拽偶尔静默失败：去「应用程序」里亲眼确认装上了](docs/images/install-03-mac-verify.png)
+
 4. 双击打开。第一次多半会被拦：「已损坏，无法打开」或「无法验证开发者」。**应用没坏**，这是 macOS 对所有没交年费给苹果的软件的统一拦法。任选一个解决：
    - **不用终端**：打开「系统设置 → 隐私与安全性」→ 一路拉到最底部 → 有一行「已阻止 Rainrain…」→ 点「**仍要打开**」→ 再确认一次，以后就正常了。
    - **用终端**：打开「终端」，粘贴下面这行回车，再双击打开：
@@ -32,6 +38,8 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
    ```bash
    xattr -dr com.apple.quarantine /Applications/Rainrain.app
    ```
+
+![被拦时：系统设置 → 隐私与安全性 → 拉到最底部 →「仍要打开」](docs/images/install-02-mac-gatekeeper.png)
 
 5. 上面都不行？打开 dmg 里那份《**安装必读.txt**》——里面有一段可以整段照抄的终端命令（自动找挂载路径、复制、解除拦截、打开），一定能装上。
 
