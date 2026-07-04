@@ -68,7 +68,7 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
 | 平台 | 安装包 | 安装说明 |
 |------|------|------|
 | Windows | `Rainrain-Setup-0.2.0.exe` | 双击安装；弹「已保护你的电脑」→ 更多信息 → 仍要运行 |
-| Mac（仅 Apple 芯片） | `Rainrain-0.2.0-arm64.dmg` | 拖进「应用程序」；若提示「已损坏」→ 右键打开，或终端跑 `xattr -dr com.apple.quarantine /Applications/Rainrain.app` |
+| Mac（仅 Apple 芯片） | `Rainrain-0.2.0-arm64.dmg` | 拖到盘内的 Applications 上并**确认应用程序里真的有了**；被拦 → 系统设置→隐私与安全性→底部「仍要打开」，或终端跑 `xattr -dr com.apple.quarantine /Applications/Rainrain.app`；装不上看 dmg 里《安装必读.txt》 |
 
 到 [Releases](../../releases) 下载。装完默认密码 `rainrain`，进设置改成自己的。
 

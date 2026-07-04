@@ -1,0 +1,38 @@
+Rainrain · Mac 安装必读
+========================
+
+【正常安装】
+1. 把左边的 Rainrain 图标，拖到右边的 Applications 文件夹上（就在本窗口内）。
+2. 等待复制完成（约 700MB，几秒到几十秒）。
+3. 验证一下真的装上了：打开「访达 → 应用程序」，能看到 Rainrain 即成功。
+   （拖完没反应 ≠ 装好了——请务必看一眼应用程序文件夹。）
+
+【首次打开被拦：「已损坏」或「无法验证开发者」】
+这是因为应用没有购买 Apple 开发者签名（99 美元/年），不是真的坏。任选其一：
+
+方法 A（推荐，不用终端）：
+  双击打开被拒后 → 打开「系统设置 → 隐私与安全性」→ 拉到最底部，
+  会看到一行「已阻止 Rainrain…」→ 点旁边的「仍要打开(Open Anyway)」→ 再确认一次。
+
+方法 B（终端一行命令）：
+  打开「终端」，粘贴回车：
+  xattr -dr com.apple.quarantine /Applications/Rainrain.app
+  然后正常双击打开。
+
+【拖拽装不上 / 想全程用终端】
+打开「终端」，逐行粘贴（假设 dmg 在「下载」文件夹）：
+
+  V=$(hdiutil attach ~/Downloads/Rainrain-0.2.0-arm64.dmg -nobrowse | grep -o "/Volumes/.*" | head -1)
+  cp -R "$V/Rainrain.app" /Applications/
+  hdiutil detach "$V"
+  xattr -dr com.apple.quarantine /Applications/Rainrain.app
+  open /Applications/Rainrain.app
+
+说明：挂载后的卷路径不要凭猜（可能带版本号/序号），上面第一行会自动取实际路径。
+
+【进入应用】
+默认密码 rainrain，登录后到右上角齿轮「设置」里改成自己的。
+界面右上角「中 / EN」可切换中英文。
+
+完整图文使用说明：
+https://github.com/chinnkirsten/rainrain/blob/main/使用说明.md
