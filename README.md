@@ -1,6 +1,6 @@
 # Rainrain · 社科学生的本地研究图书馆
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21157229.svg)](https://doi.org/10.5281/zenodo.21157229) [![License: BUSL-1.1](https://img.shields.io/badge/License-BUSL--1.1-blue.svg)](LICENSE) [![Cite this repository](https://img.shields.io/badge/cite-CITATION.cff-brightgreen.svg)](CITATION.cff) ![Platform: Windows | macOS](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey)
+![Platform: Windows | macOS](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey)
 
 把文献、史料、田野、笔记，收进一个私密、可检索、能编码的本地图书馆。
 
@@ -87,41 +87,13 @@ Rainrain 是「[社科茅草屋](https://rainrain-ten.vercel.app)」系列里的
 
 所有研究资料只存在你本机，永不上传任何云；可选的 AI 摘要也在本机运行。对要过伦理审查、处理敏感访谈的社科研究，尤其重要。
 
-## 许可证 / License
+## 免费使用 · 许可
 
-Rainrain 采用 **Business Source License 1.1（BSL 1.1）**——源码公开可读，但不是「随便拿去用」的那种开源：
+Rainrain 免费给所有人用——学生、研究者、老师，装了就用，写进真实的研究和论文里都没问题，没有条数限制，也不需要任何授权。
 
-- **个人、学术研究、教学、非营利与教育机构**使用**完全免费**（包括用在你真实的研究和论文里）。
-- **商业 / 营利性使用**需要向作者取得商业授权。
-- 每个版本在其 **Change Date（2030-07-03）**后自动转为 **Apache License 2.0**（彻底开源）。
+法律细节（一般用不着看）：源码采用 [Business Source License 1.1](LICENSE)，2030 年后自动转为 Apache 2.0；仅当公司想拿它做商业产品时需要联系作者（Kirstenchin1@outlook.com）。
 
-完整条款见 [LICENSE](LICENSE)。想要商业授权，请邮件联系作者 Kirsten Chin <Kirstenchin1@outlook.com>，或在本仓库开一条 [issue](https://github.com/chinnkirsten/rainrain/issues)。
-
-> 一句话：穷学生和研究者随便用、拿去写论文没问题；公司要用请付费；四年后彻底开源。
-
-## 引用 Rainrain / Citation
-
-如果 Rainrain 帮到了你的研究，请在论文或报告里引用它——这对一个独立的学术工具能不能活下去，很重要。
-
-GitHub 仓库页右侧的 **“Cite this repository”** 按钮会根据 [CITATION.cff](CITATION.cff) 自动生成 APA、BibTeX 等格式。手动引用可用：
-
-> Kirsten Chin. (2026). *Rainrain (社科茅草屋 Rainrain): a local-first research library and lightweight qualitative-coding tool for social scientists* (Version 0.1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21157229
-
-BibTeX：
-
-```bibtex
-@software{chin_rainrain_2026,
-  author  = {Chin, Kirsten},
-  title   = {{Rainrain (社科茅草屋 Rainrain): a local-first research library and lightweight qualitative-coding tool for social scientists}},
-  year      = {2026},
-  version   = {0.1.1},
-  publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21157229},
-  url       = {https://doi.org/10.5281/zenodo.21157229}
-}
-```
-
-> **DOI（Zenodo）：** [`10.5281/zenodo.21157229`](https://doi.org/10.5281/zenodo.21157229) —— 这是 concept DOI，永远指向最新版本；每次新发布还会有独立的版本 DOI。对外引用用这个 concept DOI 即可。
+如果它帮到了你，点个 ⭐ 就是最好的支持；想在论文里提到它的话，仓库页右侧的 "Cite this repository" 按钮能一键生成引用格式——完全可选。
 
 ## 参与贡献 / Contributing
 
