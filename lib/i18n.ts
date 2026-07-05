@@ -244,6 +244,14 @@ const S = {
   pal_none: ["没有匹配。", "No matches."],
   pal_hint: ["↑↓ 选择 · Enter 打开 · Esc 关闭", "↑↓ select · Enter open · Esc close"],
 
+  // 随手记（⌘J）
+  qc_ph: ["随手记一条…（[[ 可链到史料 / 受访者 / 笔记）", "Jot something down… ([[ links to sources / respondents / notes)"],
+  qc_dest: ["存到", "Save to"],
+  qc_save: ["保存", "Save"],
+  qc_saved: ["已存 ✓", "Saved ✓"],
+  qc_failed: ["保存失败（演示环境为只读）。文字还在框里，可复制后再试。", "Save failed (demo is read-only). Your text is still in the box."],
+  qc_hint: ["⌘↩ 保存 · Esc 关闭 · 日志按时间流水，笔记首行成标题", "⌘↩ save · Esc close · log = timeline, note = first line becomes title"],
+
   // 编码本 · 定义 / 层级 / 共现
   cb_def: ["定义", "Definition"],
   cb_defPh: ["这个码指什么、何时用、何时不用…", "What this code means, when to use it, when not…"],

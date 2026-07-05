@@ -8,6 +8,7 @@ import { StructureProvider } from "@/components/structure-provider";
 import { LangProvider } from "@/components/lang-provider";
 import { ZenChime } from "@/components/zen-chime";
 import { CommandPalette } from "@/components/command-palette";
+import { QuickCapture } from "@/components/quick-capture";
 
 const display = Newsreader({
   variable: "--font-display",
@@ -44,6 +45,7 @@ export default async function RootLayout({
           <LangProvider>{children}</LangProvider>
         </StructureProvider>
         <CommandPalette />
+        <QuickCapture />
         <ZenChime />
       </body>
     </html>
