@@ -19,7 +19,7 @@ export function QuickCapture() {
   const [ac, setAc] = useState({ open: false, query: "", start: 0, index: 0 });
   const boxRef = useRef<HTMLTextAreaElement>(null);
 
-  // 全局快捷键：⌘/Ctrl+J 开关，Esc 关闭
+  // 全局快捷键：⌘/Ctrl+J 开关，Esc 关闭；桌面版全局快捷键经由 rr-quick-capture 事件强制打开
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "j") {
@@ -29,8 +29,15 @@ export function QuickCapture() {
         setOpen(false);
       }
     }
+    function onSummon() {
+      setOpen(true);
+    }
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("rr-quick-capture", onSummon);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("rr-quick-capture", onSummon);
+    };
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 // Electron 主进程：启动内置的 Next 生产服务器（指向可写数据目录），再开一个原生窗口。
 // 免装 Node、不开浏览器、不碰命令行。
-const { app, BrowserWindow, shell } = require("electron");
+const { app, BrowserWindow, shell, globalShortcut } = require("electron");
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
@@ -79,6 +79,21 @@ function createWindow() {
 app.whenReady().then(() => {
   startServer();
   createWindow();
+  // 全局速记：Rainrain 在后台/最小化时，⌘⇧J（Win：Ctrl+Shift+J）也能唤出随手记
+  try {
+    globalShortcut.register("CommandOrControl+Shift+J", () => {
+      if (!win || win.isDestroyed()) return;
+      if (win.isMinimized()) win.restore();
+      win.show();
+      win.focus();
+      win.webContents
+        .executeJavaScript("window.dispatchEvent(new CustomEvent('rr-quick-capture'))")
+        .catch(() => {});
+    });
+  } catch {}
+});
+app.on("will-quit", () => {
+  try { globalShortcut.unregisterAll(); } catch {}
 });
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
