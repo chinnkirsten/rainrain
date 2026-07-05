@@ -22,7 +22,7 @@ Rainrain · Mac 安装必读
 【拖拽装不上 / 想全程用终端】
 打开「终端」，逐行粘贴（假设 dmg 在「下载」文件夹）：
 
-  V=$(hdiutil attach ~/Downloads/Rainrain-0.2.0-arm64.dmg -nobrowse | grep -o "/Volumes/.*" | head -1)
+  V=$(hdiutil attach ~/Downloads/Rainrain-0.2.1-arm64.dmg -nobrowse | grep -o "/Volumes/.*" | head -1)
   cp -R "$V/Rainrain.app" /Applications/
   hdiutil detach "$V"
   xattr -dr com.apple.quarantine /Applications/Rainrain.app
