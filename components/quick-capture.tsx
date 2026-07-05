@@ -137,11 +137,27 @@ export function QuickCapture() {
   }
 
   if (!open)
-    return flash ? (
-      <div className="fixed bottom-6 right-6 z-[95] rounded-lg border border-line bg-card px-3 py-2 text-sm text-ink shadow-lg">
-        {t.qc_saved}
-      </div>
-    ) : null;
+    return (
+      <>
+        {flash && (
+          <div className="fixed bottom-20 right-6 z-[95] rounded-lg border border-line bg-card px-3 py-2 text-sm text-ink shadow-lg">
+            {t.qc_saved}
+          </div>
+        )}
+        {/* 常驻入口：快捷键之外的可见抓手 */}
+        <button
+          onClick={() => setOpen(true)}
+          title={t.qc_fabTip}
+          className="fixed bottom-6 right-6 z-[85] flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2.5 text-sm text-ink shadow-[0_8px_24px_-12px_rgba(0,0,0,0.35)] transition-transform hover:-translate-y-0.5"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+          </svg>
+          {t.qc_fab}
+        </button>
+      </>
+    );
 
   return (
     <div className="fixed inset-0 z-[90] bg-black/30 backdrop-blur-[2px]" onClick={() => setOpen(false)}>

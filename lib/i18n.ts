@@ -251,6 +251,8 @@ const S = {
   qc_saved: ["已存 ✓", "Saved ✓"],
   qc_failed: ["保存失败（演示环境为只读）。文字还在框里，可复制后再试。", "Save failed (demo is read-only). Your text is still in the box."],
   qc_hint: ["⌘↩ 保存 · Esc 关闭 · 日志按时间流水，笔记首行成标题", "⌘↩ save · Esc close · log = timeline, note = first line becomes title"],
+  qc_fab: ["随手记", "Jot"],
+  qc_fabTip: ["随手记一条（⌘J / Ctrl+J）", "Quick capture (⌘J / Ctrl+J)"],
 
   // 编码本 · 定义 / 层级 / 共现
   cb_def: ["定义", "Definition"],

@@ -42,10 +42,13 @@ export default async function RootLayout({
           {themeScript}
         </Script>
         <StructureProvider>
-          <LangProvider>{children}</LangProvider>
+          <LangProvider>
+            {children}
+            {/* 有常驻可见 UI（右下角按钮），必须随语言切换 remount，所以放 LangProvider 里 */}
+            <QuickCapture />
+          </LangProvider>
         </StructureProvider>
         <CommandPalette />
-        <QuickCapture />
         <ZenChime />
       </body>
     </html>
