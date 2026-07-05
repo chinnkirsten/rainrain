@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { t } from "@/lib/i18n";
 
 type Hit = { id: string; title: string; sub?: string; href: string };
@@ -19,6 +19,7 @@ const GROUP_LABEL: Record<GroupKey, string> = {
 
 export function CommandPalette() {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const [groups, setGroups] = useState<Group[]>([]);
@@ -94,6 +95,9 @@ export function CommandPalette() {
       if (hit) go(hit.href);
     }
   }
+
+  // 登录页（未认证）不挂全局搜索：这里查询会 401
+  if (pathname === "/login") return null;
 
   if (!open) return null;
 

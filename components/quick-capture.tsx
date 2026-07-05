@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { t } from "@/lib/i18n";
 
 type Target = { id: string; title: string; type: string };
@@ -10,6 +11,7 @@ const norm = (s: string) => s.trim().toLowerCase();
 
 /** ⌘J 随手记：一个输入框，回车即存进研究日志（或切成笔记），支持 [[链接]] 联想。 */
 export function QuickCapture() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState("");
   const [dest, setDest] = useState<Dest>("log");
@@ -135,6 +137,9 @@ export function QuickCapture() {
       save();
     }
   }
+
+  // 登录页（未认证）不挂速记：这里保存会 401，按钮也不该出现
+  if (pathname === "/login") return null;
 
   if (!open)
     return (
